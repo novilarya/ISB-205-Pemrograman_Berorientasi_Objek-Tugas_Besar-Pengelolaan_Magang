@@ -25,16 +25,6 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
         initComponents();
         MengubahData();
     }
-    
-    public void showPassword(){
-        if (cbShowPassword.isSelected()){
-            txtPassword.setEchoChar((char)0);
-            cbShowPassword.setText("Hide Password");
-        }else{
-            txtPassword.setEchoChar('*');
-            cbShowPassword.setText("Show Password");
-        }
-    }
 
     public void MengubahData(){
         String nama = null; 
@@ -47,7 +37,6 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
                 txtNama.setText(rs.getString("nama"));
                 txtInstansi.setText(rs.getString("instansi"));
                 txtUsername.setText(rs.getString("username"));
-                txtPassword.setText(rs.getString("password"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -70,10 +59,8 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
         txtInstansi = new javax.swing.JTextField();
         textUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        textPassword = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
-        cbShowPassword = new javax.swing.JCheckBox();
         btnUpdate = new javax.swing.JButton();
+        btnCekPassword = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(239, 236, 229));
 
@@ -116,26 +103,6 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
             }
         });
 
-        textPassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        textPassword.setForeground(new java.awt.Color(51, 51, 51));
-        textPassword.setText("Password");
-
-        txtPassword.setBackground(new java.awt.Color(239, 239, 239));
-        txtPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(191, 191, 191), 1, true));
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
-
-        cbShowPassword.setForeground(new java.awt.Color(51, 51, 51));
-        cbShowPassword.setText("Show Password");
-        cbShowPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbShowPasswordActionPerformed(evt);
-            }
-        });
-
         btnUpdate.setBackground(new java.awt.Color(153, 255, 153));
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(51, 51, 51));
@@ -144,6 +111,17 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnCekPassword.setBackground(new java.awt.Color(153, 255, 153));
+        btnCekPassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCekPassword.setForeground(new java.awt.Color(51, 51, 51));
+        btnCekPassword.setText("Cek Password");
+        btnCekPassword.setBorder(null);
+        btnCekPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCekPasswordActionPerformed(evt);
             }
         });
 
@@ -157,17 +135,16 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
                     .addComponent(txtNama)
                     .addComponent(txtInstansi)
                     .addComponent(txtUsername)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textInstansi, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textNama, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 602, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbShowPassword)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCekPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -187,17 +164,10 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbShowPassword))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCekPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(451, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -213,19 +183,10 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
-    private void cbShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowPasswordActionPerformed
-        showPassword();
-    }//GEN-LAST:event_cbShowPasswordActionPerformed
-
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         String newNama = txtNama.getText();
         String newInstansi = txtInstansi.getText();
         String newUsername = txtUsername.getText();
-        String newPassword = txtPassword.getText(); 
         int id = 0;
         conMan = new ConnectionManager();
         conn = conMan.connectDb(); 
@@ -243,8 +204,7 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
         String query = "UPDATE daftar_akun SET nama = '"
                 + newNama + "', instansi = '"
                 + newInstansi + "', username = '"
-                + newUsername + "', password = '"
-                + newPassword + "' WHERE id = "
+                + newUsername + "' WHERE id = "
                 + id + ";";
         try {
             Statement stm = conn.createStatement();
@@ -255,17 +215,19 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void btnCekPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekPasswordActionPerformed
+        new CekPassword().setVisible(true);
+    }//GEN-LAST:event_btnCekPasswordActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCekPassword;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JCheckBox cbShowPassword;
     private javax.swing.JLabel textInstansi;
     private javax.swing.JLabel textNama;
-    private javax.swing.JLabel textPassword;
     private javax.swing.JLabel textUsername;
     private javax.swing.JTextField txtInstansi;
     private javax.swing.JTextField txtNama;
-    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,7 @@ import org.itenas.oop.project.component.TambahAdminForm;
 import org.itenas.oop.project.component.MelihatDaftarAdmin;
 import org.itenas.oop.project.component.MelihatDaftarMagangAdminDanPenyelenggara;
 import org.itenas.oop.project.component.MelihatDaftarPenyelenggara;
-import org.itenas.oop.project.component.SeleksiPendaftarForm;
+import org.itenas.oop.project.component.SeleksiPendaftarPanel;
 import org.itenas.oop.project.connection.ConnectionManager;
 
 /**
