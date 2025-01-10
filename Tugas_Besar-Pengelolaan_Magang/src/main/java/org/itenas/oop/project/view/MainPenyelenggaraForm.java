@@ -15,7 +15,7 @@ import org.itenas.oop.project.component.DataDiriPenyelenggara;
 import org.itenas.oop.project.event.EventMenuSelected;
 import org.itenas.oop.project.component.KelolaMagangForm;
 import org.itenas.oop.project.component.MelihatDaftarMagangAdminDanPenyelenggara;
-import org.itenas.oop.project.component.SeleksiPendaftarForm;
+import org.itenas.oop.project.component.SeleksiPendaftarPanel;
 import org.itenas.oop.project.connection.ConnectionManager;
 
 /**
@@ -32,12 +32,13 @@ public class MainPenyelenggaraForm extends javax.swing.JFrame {
         menuPenyelenggara1.addEventMenuSelected(new EventMenuSelected(){
             @Override
             public void selected (int index){
+                
                 if (index == 0){
                     setForm(new KelolaMagangForm());
                 }else if(index == 1){
                     setForm(new MelihatDaftarMagangAdminDanPenyelenggara());
                 }else if(index == 2){
-                    setForm(new SeleksiPendaftarForm());
+                    setForm(new SeleksiPendaftarPanel());
                 }else if(index == 3){
                     int konfirmasi = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin logout?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
                     if (konfirmasi == JOptionPane.YES_NO_OPTION) {  
@@ -88,6 +89,7 @@ public class MainPenyelenggaraForm extends javax.swing.JFrame {
         MainPanel = new javax.swing.JPanel();
         menuPenyelenggara1 = new org.itenas.oop.project.component.MenuPenyelenggara();
         headerMenu1 = new org.itenas.oop.project.component.HeaderMenu();
+        dataDiriPenyelenggara1 = new org.itenas.oop.project.component.DataDiriPenyelenggara();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,23 +105,36 @@ public class MainPenyelenggaraForm extends javax.swing.JFrame {
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addComponent(menuPenyelenggara1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(headerMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelBorder1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
+                    .addContainerGap(223, Short.MAX_VALUE)
+                    .addComponent(dataDiriPenyelenggara1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBorder1Layout.createSequentialGroup()
+                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBorder1Layout.createSequentialGroup()
+                        .addComponent(menuPenyelenggara1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addComponent(headerMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(menuPenyelenggara1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
+                    .addContainerGap(57, Short.MAX_VALUE)
+                    .addComponent(dataDiriPenyelenggara1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,6 +191,7 @@ public class MainPenyelenggaraForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
+    private org.itenas.oop.project.component.DataDiriPenyelenggara dataDiriPenyelenggara1;
     private org.itenas.oop.project.component.HeaderMenu headerMenu1;
     private org.itenas.oop.project.component.MenuPenyelenggara menuPenyelenggara1;
     private org.itenas.oop.project.panel.PanelBorder panelBorder1;
