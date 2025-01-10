@@ -113,6 +113,7 @@ org\itenas\oop\project\panel\ProfilAkun.class
 org\itenas\oop\project\component\DataDiriPendaftar$5.class
 org\itenas\oop\project\view\RegisterUtama$3.class
 org\itenas\oop\project\component\KelolaMagangForm$3.class
+org\itenas\oop\project\component\DashboardAdmin$3.class
 org\itenas\oop\project\connection\ConnectionManager.class
 org\itenas\oop\project\component\SeleksiPendaftarForm$5.class
 org\itenas\oop\project\repository\Profil$1.class
@@ -128,7 +129,9 @@ org\itenas\oop\project\view\MainAdminForm$3.class
 org\itenas\oop\project\repository\ControllerPendaftar.class
 org\itenas\oop\project\model\Admin.class
 org\itenas\oop\project\component\MelihatDaftarAdmin$4.class
+org\itenas\oop\project\component\DashboardAdmin.class
 org\itenas\oop\project\component\MelihatDaftarMagangAdminDanPenyelenggara.class
+org\itenas\oop\project\component\DashboardAdmin$1.class
 org\itenas\oop\project\view\MainPenyelenggaraForm$1.class
 org\itenas\oop\project\component\FormPendaftaran$1.class
 org\itenas\oop\project\component\DataDiriPendaftar$6.class
@@ -153,6 +156,7 @@ org\itenas\oop\project\component\FormPendaftaran.class
 org\itenas\oop\project\component\KelolaMagangForm$4.class
 org\itenas\oop\project\repository\Profil$2.class
 org\itenas\oop\project\view\MainPenyelenggaraForm$2.class
+org\itenas\oop\project\component\DashboardAdmin$2.class
 org\itenas\oop\project\view\RegisterUtama.class
 org\itenas\oop\project\component\TambahAdminForm$5.class
 org\itenas\oop\project\component\DataDiriAdmin$2.class

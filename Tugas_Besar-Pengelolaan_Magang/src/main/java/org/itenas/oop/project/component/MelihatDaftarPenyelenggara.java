@@ -90,8 +90,11 @@ public class MelihatDaftarPenyelenggara extends javax.swing.JPanel {
             }
             if (!hasil) {
                 JOptionPane.showMessageDialog(this, "Nama Penyelenggara tidak ditemukan!", "Pencarian Tidak Ditemukan", JOptionPane.INFORMATION_MESSAGE);
+                tableDataPenyelenggara();
+            } else {
+                tablePenyelenggara.setModel(model);
             }
-            tablePenyelenggara.setModel(model);
+           
             conMan.disconnectDb(conn);
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
@@ -241,16 +244,12 @@ public class MelihatDaftarPenyelenggara extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSearchNamaPenyelenggaraActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        try {
-            String namaPenyelenggara = txtSearchNamaPenyelenggara.getText();
+        String namaPenyelenggara = txtSearchNamaPenyelenggara.getText();
             if (namaPenyelenggara.isEmpty()) {
-                cariTableDataPenyelenggara("");
+                tableDataPenyelenggara();
             } else {
                 cariTableDataPenyelenggara(namaPenyelenggara);
             }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Nama Admin yang anda masukan tidak ada " + ex.getMessage());
-        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
 

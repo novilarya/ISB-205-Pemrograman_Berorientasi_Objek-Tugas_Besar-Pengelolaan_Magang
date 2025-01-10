@@ -29,14 +29,14 @@ ControllerLogin conLog = new ControllerLogin();
         txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
     public void keyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            txtPassword.requestFocus(); // Pindahkan fokus ke password
+            txtPassword.requestFocus(); 
         }
     }
 });
         txtNama.addKeyListener(new java.awt.event.KeyAdapter() {
     public void keyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            txtUsername.requestFocus(); // Pindahkan fokus ke password
+            txtUsername.requestFocus(); 
         }
     }
 });
