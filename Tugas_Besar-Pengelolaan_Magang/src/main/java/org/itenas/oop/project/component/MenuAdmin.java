@@ -27,25 +27,26 @@ public class MenuAdmin extends javax.swing.JPanel {
     
     public void addEventMenuSelected(EventMenuSelected event){
         this.event = event;
-        listMenuPenyelenggara2.addEventMenuSelected(event);
+        listMenuAdmin1.addEventMenuSelected(event);
     }
     
     public MenuAdmin() {
         this.fram = fram;
         initComponents();
         setOpaque(false);
-        listMenuPenyelenggara2.setOpaque(false);
+        listMenuAdmin1.setOpaque(false);
         init();
     }
     
     
     
     private void init(){
-        listMenuPenyelenggara2.addItem(new ModelMenu("Tambah Admin", ModelMenu.MenuType.MENU));
-        listMenuPenyelenggara2.addItem(new ModelMenu("Daftar Admin", ModelMenu.MenuType.MENU));
-        listMenuPenyelenggara2.addItem(new ModelMenu("Daftar Magang", ModelMenu.MenuType.MENU));
-        listMenuPenyelenggara2.addItem(new ModelMenu("Daftar Penyelenggara", ModelMenu.MenuType.MENU));
-        listMenuPenyelenggara2.addItem(new ModelMenu("Logout", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("Dashboard", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("Tambah Admin", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("Daftar Admin", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("Daftar Magang", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("Daftar Penyelenggara", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("Logout", ModelMenu.MenuType.MENU));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,7 +59,7 @@ public class MenuAdmin extends javax.swing.JPanel {
 
         panelMoving = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        listMenuPenyelenggara2 = new org.itenas.oop.project.repository.ListMenuPenyelenggara<>();
+        listMenuAdmin1 = new org.itenas.oop.project.repository.ListMenuPenyelenggara<>();
 
         panelMoving.setOpaque(false);
 
@@ -87,7 +88,7 @@ public class MenuAdmin extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listMenuPenyelenggara2, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+            .addComponent(listMenuAdmin1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -98,7 +99,7 @@ public class MenuAdmin extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 73, Short.MAX_VALUE)
-                .addComponent(listMenuPenyelenggara2, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(listMenuAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -139,7 +140,7 @@ public class MenuAdmin extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private org.itenas.oop.project.repository.ListMenuPenyelenggara<String> listMenuPenyelenggara2;
+    private org.itenas.oop.project.repository.ListMenuPenyelenggara<String> listMenuAdmin1;
     private javax.swing.JPanel panelMoving;
     // End of variables declaration//GEN-END:variables
 }

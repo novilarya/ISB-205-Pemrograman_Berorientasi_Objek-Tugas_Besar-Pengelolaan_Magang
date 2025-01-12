@@ -44,17 +44,14 @@ Scanner input = new Scanner(System.in);
         return instansi;
     }
     
-    public boolean insertPendaftar(String nama, String jenisKelamin, String pendidikanSaatIni, int umur){        
+    public boolean insertPendaftar(String nama, String jenisKelamin, String pendidikanSaatIni, int umur, String judul){        
        
         try {
             Statement stm = con.createStatement();
-//            String penyelenggara = mengambilInstansi();
             String query2 = "INSERT INTO daftar_pendaftar_magang "
-                + "(nama, jenis_kelamin, pendidikan_saat_ini, umur)"
-                + "values ('" + nama + "', '" + jenisKelamin + "', '" + pendidikanSaatIni + "', '" + umur + "')";
-        
-            stm.executeUpdate(query2);
-            
+                + "(nama, jenis_kelamin, pendidikan_saat_ini, umur, judul)"
+                + "values ('" + nama + "', '" + jenisKelamin + "', '" + pendidikanSaatIni + "', '" + umur + "', '" + judul + "')";        
+            stm.executeUpdate(query2);            
             return true;
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -129,8 +126,7 @@ Scanner input = new Scanner(System.in);
             System.out.println(ex.toString());
         }
         return listMagangPendaftar;
-    }
-    
+    }  
     public boolean insertMagangPendaftar(String nama, String jenisKelamin, String pendidikanSaatIni, int umur, String judul){
     
         try {
@@ -148,5 +144,21 @@ Scanner input = new Scanner(System.in);
         }         
     }
     
-    //public List<Magang>
+    public Pendaftar showPendaftar(){
+        Pendaftar pendaftar = new Pendaftar();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM temp_daftar_akun");
+            while (rs.next()) {                
+                pendaftar.setIdPendaftar(rs.getInt("id"));
+                pendaftar.setNama(rs.getString("nama"));
+                pendaftar.setJenisKelamin(rs.getString("jenis_kelamin"));
+                pendaftar.setPendidikanSaatIni(rs.getString("pendidikan_saat_ini"));
+                pendaftar.setUmur(rs.getInt("umur"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+        return pendaftar;
+    }    
 }
