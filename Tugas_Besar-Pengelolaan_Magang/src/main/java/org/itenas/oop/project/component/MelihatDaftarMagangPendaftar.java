@@ -21,6 +21,10 @@ import org.itenas.oop.project.model.Magang;
 import org.itenas.oop.project.repository.ControllerMagang;
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.itenas.oop.project.repository.RoundedPanel;
 
 /**
@@ -31,8 +35,8 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
     private Boolean hasil;
     private ControllerMagang conMagang = new ControllerMagang();
     private DefaultTableModel model;
-    private ConnectionManager conMan;
-    private Connection conn;
+    private ConnectionManager conMan = new ConnectionManager();
+    private Connection con = conMan.connectDb();
 
     public final void getData() {
     jPanel3.removeAll();
@@ -143,6 +147,14 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
             jTextArea2.setEditable(false);
             jTextArea3.setEditable(false);
             jTextArea4.setEditable(false);
+            String judul = jLabel1.getText();       
+            try {
+                Statement stm = con.createStatement();
+                String query = "UPDATE temp_daftar_akun SET judul = '" + judul + "' LIMIT 1;";
+                stm.executeUpdate(query);
+            } catch (SQLException ex) {
+                //Logger.getLogger(SeleksiPendaftarForm.class.getName()).log(Level.SEVERE, null, ex);
+            }   
         }
     }
     
@@ -389,10 +401,15 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
     }//GEN-LAST:event_DetailActionPerformed
 
     private void jButtonDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDaftarActionPerformed
-        /* TODO add your handling code here:
-        PendaftaranForm formPendaftaran = new PendaftaranForm();
-        formPendaftaran.setVisible(true); // Menampilkan form pendaftaran
-        this.dispose(); // Menutup form saat ini*/
+        String judul = jLabel1.getText();       
+        try {
+            Statement stm = con.createStatement();
+            String query = "UPDATE temp_daftar_akun SET judul = '" + judul + "' LIMIT 1;";
+            stm.executeUpdate(query);
+            new PendaftaranFrame().setVisible(true);
+        } catch (SQLException ex) {
+            //Logger.getLogger(SeleksiPendaftarForm.class.getName()).log(Level.SEVERE, null, ex);
+        }              
     }//GEN-LAST:event_jButtonDaftarActionPerformed
     public class InternshipListItem extends javax.swing.JPanel {
     private Magang magang;
