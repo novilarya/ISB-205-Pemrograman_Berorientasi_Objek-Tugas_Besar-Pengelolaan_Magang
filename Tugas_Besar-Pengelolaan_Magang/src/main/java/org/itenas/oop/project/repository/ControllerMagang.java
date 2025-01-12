@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import org.itenas.oop.project.connection.ConnectionManager;
+import org.itenas.oop.project.model.Hasil;
 import org.itenas.oop.project.model.Magang;
 
 public class ControllerMagang {
@@ -130,5 +131,46 @@ public class ControllerMagang {
             System.out.println(ex.toString());
         }
         return listMagang;
-    }    
+    }  
+    
+    public List<Hasil> showHasil(){
+        List<Hasil> listHasil = new ArrayList<Hasil>();
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT hasil_seleksi.nama, hasil_seleksi.judul, hasil_seleksi.status " + 
+                    "FROM hasil_seleksi INNER JOIN temp_daftar_akun " + 
+                    "ON hasil_seleksi.nama = temp_daftar_akun.nama " +
+                    "WHERE hasil_seleksi.nama = temp_daftar_akun.nama;");
+            while (rs.next()) {                
+                Hasil hasil = new Hasil();
+                hasil.setNama(rs.getString("nama"));
+                hasil.setJudul(rs.getString("judul"));
+                hasil.setStatus(rs.getString("status"));
+                listHasil.add(hasil);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+        return listHasil;
+    } 
+    
+        
+    public Hasil mencariHasilBerdasarkanJudul(String judulMagang){
+        Hasil hasil = new Hasil();
+        try{
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT hasil_seleksi.nama, hasil_seleksi.judul, hasil_seleksi.status " + 
+                    "FROM hasil_seleksi INNER JOIN temp_daftar_akun " + 
+                    "ON hasil_seleksi.nama = temp_daftar_akun.nama " +
+                    "WHERE (hasil_seleksi.nama = temp_daftar_akun.nama) && (judul LIKE '%" + judulMagang + "%');");            
+            while (rs.next()){
+                hasil.setNama(rs.getString("nama"));
+                hasil.setJudul(rs.getString("judul"));
+                hasil.setStatus(rs.getString("status"));
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.toString());
+        }    
+        return hasil;
+    }
 }
