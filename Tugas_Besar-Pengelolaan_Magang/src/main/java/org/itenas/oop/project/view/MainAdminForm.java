@@ -12,11 +12,12 @@ import javax.swing.JOptionPane;
 import org.itenas.oop.project.component.DataDiriAdmin;
 import org.itenas.oop.project.component.DataDiriPenyelenggara;
 import org.itenas.oop.project.event.EventMenuSelected;
+import org.itenas.oop.project.component.DashboardAdmin;
 import org.itenas.oop.project.component.TambahAdminForm;
 import org.itenas.oop.project.component.MelihatDaftarAdmin;
 import org.itenas.oop.project.component.MelihatDaftarMagangAdminDanPenyelenggara;
 import org.itenas.oop.project.component.MelihatDaftarPenyelenggara;
-import org.itenas.oop.project.component.SeleksiPendaftarForm;
+import org.itenas.oop.project.component.SeleksiPendaftarPanel;
 import org.itenas.oop.project.connection.ConnectionManager;
 
 /**
@@ -32,18 +33,21 @@ public class MainAdminForm extends javax.swing.JFrame {
     public MainAdminForm() {
         initComponents();
         menu.initMoving(MainAdminForm.this);
+        setForm(new DashboardAdmin());
         menu.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
                 if (index == 0) {
+                    setForm(new DashboardAdmin());
+                }else if (index == 1) {
                     setForm(new TambahAdminForm());
-                } else if (index == 1) {
-                    setForm(new MelihatDaftarAdmin());
                 } else if (index == 2) {
-                    setForm(new MelihatDaftarMagangAdminDanPenyelenggara());
+                    setForm(new MelihatDaftarAdmin());
                 } else if (index == 3) {
-                    setForm(new MelihatDaftarPenyelenggara());
+                    setForm(new MelihatDaftarMagangAdminDanPenyelenggara());
                 } else if (index == 4) {
+                    setForm(new MelihatDaftarPenyelenggara());
+                } else if (index == 5) {
                     int konfirmasi = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin logout?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
                     if (konfirmasi == JOptionPane.YES_NO_OPTION) {       
                         try {
@@ -66,10 +70,13 @@ public class MainAdminForm extends javax.swing.JFrame {
             public void selected (int index){
                 if (index == 0){
                     setForm(new DataDiriAdmin());
+                    
                 }
             }   
         });
     }
+    
+    
     
     
 

@@ -61,36 +61,40 @@ public class MelihatDaftarAdmin extends javax.swing.JPanel {
 }
     
     private void cariTableDataAdmin(String namaAdmin) {
-    ConnectionManager conMan = new ConnectionManager();
-    Connection conn = conMan.connectDb();
-    DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("Nama");
-    model.addColumn("Username");
-    tableAdmin.setModel(model);
-    boolean hasil = false;
+        ConnectionManager conMan = new ConnectionManager();
+        Connection conn = conMan.connectDb();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nama");
+        model.addColumn("Username");
+        tableAdmin.setModel(model);
+        boolean hasil = false;
 
-    try {
-        Statement stmt = conn.createStatement();
-        String query = "SELECT nama, username FROM daftar_akun WHERE jenis_akun = 'Admin' AND nama LIKE '%" + namaAdmin + "%'"; 
-        ResultSet rs = stmt.executeQuery(query);
+        try {
+            Statement stmt = conn.createStatement();
+            String query = "SELECT nama, username FROM daftar_akun WHERE jenis_akun = 'Admin' AND nama LIKE '%" + namaAdmin + "%'";
+            ResultSet rs = stmt.executeQuery(query);
 
-        while (rs.next()) {
-            hasil = true;
-            model.addRow(new Object[]{
-                rs.getString("nama"),
-                rs.getString("username"), 
-            });
+            while (rs.next()) {
+                hasil = true;
+                model.addRow(new Object[]{
+                    rs.getString("nama"),
+                    rs.getString("username"),});
+            }
+
+            if (!hasil) {
+                JOptionPane.showMessageDialog(this, "Nama Admin tidak ditemukan! Memuat semua data...", "Pencarian Tidak Ditemukan", JOptionPane.INFORMATION_MESSAGE);
+                TableDataAdmin();
+            } else {
+                tableAdmin.setModel(model);
+            }
+
+            conMan.disconnectDb(conn);
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat pencarian.");
         }
-        if (!hasil) {
-            JOptionPane.showMessageDialog(this, "Nama Admin tidak ditemukan!", "Pencarian Tidak Ditemukan", JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-        tableAdmin.setModel(model); 
-        conMan.disconnectDb(conn);
-    } catch (SQLException ex) {
-        System.out.println("Error: " + ex.getMessage());
     }
-}
+
     
     
 
@@ -273,16 +277,12 @@ public class MelihatDaftarAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSearchNamaAdminActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        try {
         String namaAdmin = txtSearchNamaAdmin.getText();
         if (namaAdmin.isEmpty()) {
-            cariTableDataAdmin(""); 
+            TableDataAdmin();
         } else {
-            cariTableDataAdmin(namaAdmin);  
+            cariTableDataAdmin(namaAdmin);
         }
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(null, "Nama Admin yang anda masukan tidak ada " + ex.getMessage());
-    }
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
