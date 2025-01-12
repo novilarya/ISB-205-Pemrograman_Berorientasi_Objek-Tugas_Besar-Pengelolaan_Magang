@@ -19,7 +19,7 @@ import org.itenas.oop.project.repository.ControllerPendaftar;
  *
  * @author aryan
  */
-public class SeleksiPendaftarForm22 extends javax.swing.JFrame {
+public class SeleksiPendaftarFrame extends javax.swing.JFrame {
     Boolean hasil;
     ControllerPendaftar conPendaftar = new ControllerPendaftar();
     private ConnectionManager conMan;
@@ -28,7 +28,7 @@ public class SeleksiPendaftarForm22 extends javax.swing.JFrame {
     /**
      * Creates new form SeleksiPendaftarForm22
      */
-    public SeleksiPendaftarForm22() {
+    public SeleksiPendaftarFrame() {
         initComponents();
         getData();
     }
@@ -56,7 +56,23 @@ public class SeleksiPendaftarForm22 extends javax.swing.JFrame {
         }
         
     }
-    
+
+    public String mengambilJudul() throws SQLException{
+        String judul = null;
+        conMan = new ConnectionManager();     
+        Connection conn = conMan.connectDb();
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT judul from temp_daftar_pendaftar_magang");        
+        try {
+            while (rs.next()){
+                judul = rs.getString("judul");
+                return judul;
+            }             
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return judul;
+    }     
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -222,89 +238,74 @@ public class SeleksiPendaftarForm22 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public String mengambilJudul() throws SQLException{
-        String judul = null;
-        conMan = new ConnectionManager();     
-        Connection conn = conMan.connectDb();
-        Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT judul from temp_daftar_pendaftar_magang");        
-        try {
-            while (rs.next()){
-                judul = rs.getString("judul");
-            }             
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
-        return judul;
-    }    
-    
     private void btnTerimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerimaActionPerformed
         conMan = new ConnectionManager();
         conn = conMan.connectDb();
+        String nama = txtNama.getText();
         
-        String judul = null;
+        String judul;
         try {
             judul = mengambilJudul();
-        } catch (SQLException ex) {
-            Logger.getLogger(SeleksiPendaftarForm22.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-         try {
-            Statement stm = conn.createStatement();
-            
-            String query2 = "INSERT INTO hasil_seleksi "
-                + "(nama, judul, status)"
-                + "values ('" + txtNama.getText() + "', '" + judul + "', 'Diterima')";         
             try {
-                String query = "TRUNCATE TABLE temp_daftar_pendaftar_magang;";
-                stm.executeUpdate(query);               
-            } catch (SQLException ex){
+                Statement stm = conn.createStatement();
+                String query2 = "INSERT INTO hasil_seleksi "
+                    + "(nama, judul, status)"
+                    + "values ('" + nama + "', '" + judul + "', 'Diterima')";
+                String query = "DELETE FROM temp_daftar_pendaftar_magang"
+                    + " WHERE nama = '"
+                    + nama + "';";
+                stm.executeUpdate(query2);            
+                stm.executeUpdate(query);
+                new SeleksiPendaftarFrame().setVisible(false); 
+                dispose();
+            } catch (SQLException ex) {
                 System.out.println(ex.toString());
-            }
-
-            stm.executeUpdate(query2);
-            new SeleksiPendaftarForm22().setVisible(false);
-            dispose();
+            }            
         } catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }
+            Logger.getLogger(SeleksiPendaftarFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     }//GEN-LAST:event_btnTerimaActionPerformed
 
     private void btnTolakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTolakActionPerformed
         conMan = new ConnectionManager();
         conn = conMan.connectDb();
+        String nama = txtNama.getText();
         
-        String judul = null;
+        String judul;
         try {
             judul = mengambilJudul();
+            try {
+                Statement stm = conn.createStatement();
+                String query2 = "INSERT INTO hasil_seleksi "
+                    + "(nama, judul, status)"
+                    + "values ('" + nama + "', '" + judul + "', 'Ditolak')";
+                String query = "DELETE FROM temp_daftar_pendaftar_magang"
+                    + " WHERE nama = '"
+                    + nama + "';";
+                stm.executeUpdate(query2);            
+                stm.executeUpdate(query);
+                new SeleksiPendaftarFrame().setVisible(false); 
+                dispose();
+            } catch (SQLException ex) {
+                System.out.println(ex.toString());
+            }            
         } catch (SQLException ex) {
-            Logger.getLogger(SeleksiPendaftarForm22.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-         try {
-            Statement stm = conn.createStatement();
-            String query2 = "INSERT INTO hasil_seleksi "
-                + "(nama, judul, status)"
-                + "values ('" + txtNama.getText() + "', '" + judul + "', 'Ditolak')";
-            stm.executeUpdate(query2);
-            new SeleksiPendaftarForm22().setVisible(false); 
-            dispose();
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
+            Logger.getLogger(SeleksiPendaftarFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnTolakActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         conMan = new ConnectionManager();
         conn = conMan.connectDb();
+        String nama = txtNama.getText();
         
         try {
             Statement stm = conn.createStatement();
-            String query2 = "Drop nama FROM temp_daftar_pendaftar_magang"
-                + "WHERE nama = '"
-                + txtNama.getText() + "';";
+            String query2 = "DELETE FROM temp_daftar_pendaftar_magang"
+                + " WHERE nama = '"
+                + nama + "';";
             stm.executeUpdate(query2);
-            new SeleksiPendaftarForm22().setVisible(false);
+            new SeleksiPendaftarFrame().setVisible(false);
             dispose();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -329,20 +330,23 @@ public class SeleksiPendaftarForm22 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SeleksiPendaftarForm22.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleksiPendaftarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SeleksiPendaftarForm22.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleksiPendaftarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SeleksiPendaftarForm22.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleksiPendaftarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SeleksiPendaftarForm22.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleksiPendaftarFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SeleksiPendaftarForm22().setVisible(true);
+                new SeleksiPendaftarFrame().setVisible(true);
             }
         });
     }

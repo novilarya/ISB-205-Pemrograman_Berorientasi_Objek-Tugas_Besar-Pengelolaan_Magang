@@ -13,11 +13,12 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import org.itenas.oop.project.component.DataDiriPenyelenggara;
 import org.itenas.oop.project.event.EventMenuSelected;
-import org.itenas.oop.project.component.Pendaftaran;
+import org.itenas.oop.project.component.PendaftaranPanel;
 import org.itenas.oop.project.component.MelihatDaftarMagangPendaftar;
 import org.itenas.oop.project.connection.ConnectionManager;
-import org.itenas.oop.project.component.MelihatHasilSeleksi;
+import org.itenas.oop.project.component.HasilSeleksi;
 import org.itenas.oop.project.component.DataDiriPendaftar;
+import org.itenas.oop.project.component.PendaftaranPanel;
 
 /**
  *
@@ -36,9 +37,9 @@ public class MainPendaftarForm extends javax.swing.JFrame {
                 if (index == 0){
                     setForm(new MelihatDaftarMagangPendaftar());
                 }else if(index == 1){
-                    setForm(new Pendaftaran());
+                    setForm(new PendaftaranPanel());
                 }else if(index == 2){
-                    setForm(new MelihatHasilSeleksi());
+                    setForm(new HasilSeleksi());
                 }else if(index == 3){
                     int konfirmasi = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin logout?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
                     if (konfirmasi == JOptionPane.YES_NO_OPTION) {  

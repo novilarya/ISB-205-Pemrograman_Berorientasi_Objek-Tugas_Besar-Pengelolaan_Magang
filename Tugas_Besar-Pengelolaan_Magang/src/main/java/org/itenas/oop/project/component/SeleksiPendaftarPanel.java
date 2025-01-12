@@ -5,6 +5,7 @@
 package org.itenas.oop.project.component;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -24,7 +25,7 @@ import org.itenas.oop.project.repository.ControllerPendaftar;
  *
  * @author aryan
  */
-public class SeleksiPendaftarForm extends javax.swing.JPanel {
+public class SeleksiPendaftarPanel extends javax.swing.JPanel {
 
     Boolean hasil;
     ControllerMagang conMagang = new ControllerMagang();
@@ -35,7 +36,7 @@ public class SeleksiPendaftarForm extends javax.swing.JPanel {
     private Connection con = conMan.connectDb();;
     private String judulMagang = null ;
     
-    public SeleksiPendaftarForm() {
+    public SeleksiPendaftarPanel() {
         initComponents();
         
         model = new DefaultTableModel();
@@ -52,8 +53,23 @@ public class SeleksiPendaftarForm extends javax.swing.JPanel {
         modelPendaftar = new DefaultTableModel();
         tabelPendaftar.setModel(modelPendaftar);
         modelPendaftar.addColumn("Nama");
-        //getDataPendaftar();
     }
+    
+    public String mengambilJudul() throws SQLException{
+        String judul = null;
+        conMan = new ConnectionManager();     
+        Connection conn = conMan.connectDb();
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT judul from temp_daftar_pendaftar_magang");        
+        try {
+            while (rs.next()){
+                judul = rs.getString("judul");
+            }             
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return judul;
+    }    
     
     public final void getDataPendaftar(){
         DefaultTableModel dtm = (DefaultTableModel) tabelPendaftar.getModel();
@@ -124,13 +140,7 @@ public class SeleksiPendaftarForm extends javax.swing.JPanel {
         List<MagangPendaftar> listMagangPendaftar = conPendaftar.showPendaftarBerdasarkanMagang(judulMagang);
         String[] data = new String[1];
         for (MagangPendaftar newPendaftar : listMagangPendaftar){
-            //data[0] = Integer.toString(newPendaftar.getKodeSeleksi());
             data[0] = newPendaftar.getNama();
-            /*data[2] = newPendaftar.getJenisKelamin();
-            data[3] = newPendaftar.getPendidikanSaatIni();
-            data[4] = Integer.toString(newPendaftar.getUmur());
-            data[5] = newPendaftar.getJudulMagang();*/
-            
             dtm.addRow(data);
         }         
     } 
@@ -328,26 +338,57 @@ public class SeleksiPendaftarForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchJudulActionPerformed
     
     private void tabelMagangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMagangMouseClicked
-        int i = tabelMagang.getSelectedRow();
-
-        TableModel model = tabelMagang.getModel();
-      
-        judulMagang = model.getValueAt(i, 0).toString();
-   
-        if (i >= 0) {
-            String judul = model.getValueAt(i, 0).toString();
+        try {
+            int i = tabelMagang.getSelectedRow();
+            TableModel model = tabelMagang.getModel();
             
-            try {
-                Statement stm = con.createStatement();
-                String query = "INSERT INTO temp_daftar_pendaftar_magang (judul) VALUES ('" + judul + "');";
-                stm.executeUpdate(query);
-                tampilkanDataPendaftarBerdasarkanMagang(judulMagang);
-            } catch (SQLException ex) {
-                Logger.getLogger(SeleksiPendaftarForm.class.getName()).log(Level.SEVERE, null, ex);
+            String judulMgng = mengambilJudul();
+            
+            if(judulMgng != null && judulMgng.isEmpty()){
+                judulMagang = model.getValueAt(i, 0).toString();
+                
+                if (i >= 0) {
+                    String judul = model.getValueAt(i, 0).toString();
+                    
+                    try {
+                        Statement stm = con.createStatement();
+                        String query = "INSERT INTO temp_daftar_pendaftar_magang (judul) VALUES ('" + judul + "');";
+                        stm.executeUpdate(query);
+                        tampilkanDataPendaftarBerdasarkanMagang(judulMagang);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(SeleksiPendaftarPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tidak ada baris yang dipilih!");
+                }
+            }else{
+                try {
+                    Statement stm = con.createStatement();                    
+                    String query = "TRUNCATE TABLE temp_daftar_pendaftar_magang;";
+                    stm.executeUpdate(query);               
+                } catch (SQLException ex){
+                    System.out.println(ex.toString());
+                }
+                    judulMagang = model.getValueAt(i, 0).toString();
+
+                    if (i >= 0) {
+                        String judul = model.getValueAt(i, 0).toString();
+
+                        try {
+                            Statement stm = con.createStatement();
+                            String query = "INSERT INTO temp_daftar_pendaftar_magang (judul) VALUES ('" + judul + "');";
+                            stm.executeUpdate(query);
+                            tampilkanDataPendaftarBerdasarkanMagang(judulMagang);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(SeleksiPendaftarPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Tidak ada baris yang dipilih!");
+                    }                
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Tidak ada baris yang dipilih!");
-        }         
+        } catch (SQLException ex) {
+            Logger.getLogger(SeleksiPendaftarPanel.class.getName()).log(Level.SEVERE, null, ex);             
+        }  
     }//GEN-LAST:event_tabelMagangMouseClicked
 
     private void txtSearchNamaPendaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchNamaPendaftarActionPerformed
@@ -365,24 +406,24 @@ public class SeleksiPendaftarForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchNamaActionPerformed
 
     private void tabelPendaftarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelPendaftarMouseClicked
-        int i = tabelMagang.getSelectedRow();
-        
-        if (i >= 0) { // Pastikan ada baris yang dipilih
-            TableModel model = tabelPendaftar.getModel();
+        int i = tabelPendaftar.getSelectedRow();
+
+        TableModel model = tabelPendaftar.getModel();
+   
+        if (i >= 0) {
             String nama = model.getValueAt(i, 0).toString();
-            System.out.println(nama);
+            
             try {
                 Statement stm = con.createStatement();
                 String query = "INSERT INTO temp_daftar_pendaftar_magang (nama) VALUES ('" + nama + "');";
                 stm.executeUpdate(query);
-                new SeleksiPendaftarForm22().setVisible(true);
+                new SeleksiPendaftarFrame().setVisible(true);
             } catch (SQLException ex) {
-                Logger.getLogger(SeleksiPendaftarForm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SeleksiPendaftarPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-         
         } else {
             JOptionPane.showMessageDialog(null, "Tidak ada baris yang dipilih!");
-        }
+        }        
     }//GEN-LAST:event_tabelPendaftarMouseClicked
 
     private boolean someCondition() {
