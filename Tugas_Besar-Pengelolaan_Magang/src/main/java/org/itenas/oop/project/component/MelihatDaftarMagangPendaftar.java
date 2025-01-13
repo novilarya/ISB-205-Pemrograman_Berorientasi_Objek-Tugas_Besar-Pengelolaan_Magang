@@ -233,7 +233,6 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Deskripsi");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -279,25 +278,20 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jPanel3);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Judul");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         KualifikasiMagang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        KualifikasiMagang.setForeground(new java.awt.Color(0, 0, 0));
         KualifikasiMagang.setText("Kualifikasi");
 
         LokasiMagang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        LokasiMagang.setForeground(new java.awt.Color(0, 0, 0));
         LokasiMagang.setText("Lokasi");
 
         DeskripsiMagang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DeskripsiMagang.setForeground(new java.awt.Color(0, 0, 0));
         DeskripsiMagang.setText("Posisi");
 
         DeskripsiMagang1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DeskripsiMagang1.setForeground(new java.awt.Color(0, 0, 0));
         DeskripsiMagang1.setText("Deskripsi ");
 
         jTextArea1.setColumns(20);
