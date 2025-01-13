@@ -88,6 +88,7 @@ public class MainPendaftarForm extends javax.swing.JFrame {
 
         panelBorder1 = new org.itenas.oop.project.panel.PanelBorder();
         MainPanel = new javax.swing.JPanel();
+        dataDiriPendaftar1 = new org.itenas.oop.project.component.DataDiriPendaftar();
         headerMenu1 = new org.itenas.oop.project.component.HeaderMenu();
         menuPendaftar1 = new org.itenas.oop.project.component.MenuPendaftar();
 
@@ -98,6 +99,7 @@ public class MainPendaftarForm extends javax.swing.JFrame {
         MainPanel.setBackground(new java.awt.Color(246, 244, 240));
         MainPanel.setOpaque(false);
         MainPanel.setLayout(new java.awt.BorderLayout());
+        MainPanel.add(dataDiriPendaftar1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
@@ -204,6 +206,7 @@ public class MainPendaftarForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
+    private org.itenas.oop.project.component.DataDiriPendaftar dataDiriPendaftar1;
     private org.itenas.oop.project.component.HeaderMenu headerMenu1;
     private org.itenas.oop.project.component.MenuPendaftar menuPendaftar1;
     private org.itenas.oop.project.panel.PanelBorder panelBorder1;
