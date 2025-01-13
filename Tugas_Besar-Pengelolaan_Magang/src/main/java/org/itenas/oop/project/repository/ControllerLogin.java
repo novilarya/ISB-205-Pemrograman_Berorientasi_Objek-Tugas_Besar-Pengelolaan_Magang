@@ -20,50 +20,6 @@ public class ControllerLogin {
     Statement stmt;
     ResultSet rs;
 
-    
-    public String Login(String user, String pwd) {
-    String nama = null; 
-    conMan = new ConnectionManager();
-    conn = conMan.connectDb();
-    try {
-        Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM admin WHERE username = '" + user + "' AND password = '" + pwd + "'");
-        if (rs.next()) { 
-            nama = rs.getString("nama"); 
-        }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-    } finally {
-        conMan.disconnectDb(conn);// Pastikan koneksi ditutup
-    }
-    return nama; // Jika login gagal, akan mengembalikan null
-}
-    public int LoginPenyelenggara(String user, String pwd){
-        int stat = 0;
-        conMan = new ConnectionManager();
-        conn = conMan.connectDb();
-        try {
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM daftarpenyelenggara where username = '" + user + "' and password = '" + pwd + "'");
-            while (rs.next()) {
-                if (user.equals(rs.getString("username")) && pwd.equals(rs.getString("password"))) {
-                    stat = 1;
-                } else {
-                    stat = 0;
-                }
-                
-                String instansi = rs.getString("instansi");
-
-                String insertQuery = "INSERT INTO tempinstansi (instansi) VALUES ('" + instansi + "')";
-                stm.executeUpdate(insertQuery);
-
-            }
-            return stat;
-        }catch(SQLException ex){
-            return stat;
-        }
-    }
-
     public int register(String nama, String user, String pwd){
         int stat = 0;
         String query = "INSERT INTO daftar_akun (jenis_akun, nama, username, password) VALUES ('Admin', '"+nama+"', '"+user+"', '"+pwd+"');";
@@ -77,26 +33,8 @@ public class ControllerLogin {
             System.out.println("error: " + ex.getMessage());
     }
         return stat;
-    }
-
-    public int registerPenyelenggara(String nama, String instansi, String user, String pwd){
-        int stat = 0;
-        String query = "INSERT INTO daftarpenyelenggara (nama, instansi, username, password) VALUES ('" + nama + "', '" + instansi + "', '" + user + "', '" + pwd + "');";
-        String query2 = "INSERT INTO tempinstansi values ('" + instansi + "')"; 
-        conMan = new ConnectionManager();
-        conn = conMan.connectDb();
-        try {
-            stmt = conn.createStatement();
-            stmt.executeUpdate(query);
-            stmt.executeUpdate(query2);
-            conMan.disconnectDb(conn);
-        } catch (SQLException ex){
-            System.out.println("error: " + ex.getMessage());
-        }
-
-        return stat;
-    }
-        
+    }    
+    
     public int registerUtama(String jenisAkun, String nama, String user, String pwd){
         int stat = 0;
         String query = "INSERT INTO daftar_akun (jenis_akun, username, password, nama) VALUES ('" + jenisAkun + "', '" + user + "', '" + pwd + "', '" + nama + "');"; 
@@ -136,6 +74,8 @@ public class ControllerLogin {
                 String pendidikanSaatIni = rs.getString("pendidikan_saat_ini");
                 int umur = rs.getInt("umur");
                 String instansi = rs.getString("instansi");
+                String pengalamanOrganisasi = rs.getString("pengalaman_organisasi");
+                String pengalamanLainnya = rs.getString("pengalaman_lainnya");
                 
                 if ("Admin".equals(jenisAkun)){
                     String insertQuery = "INSERT INTO temp_daftar_akun (id, jenis_akun, username, password, nama) VALUES ('"
@@ -155,7 +95,7 @@ public class ControllerLogin {
                             + instansi + "');";
                     stm.executeUpdate(insertQuery);                
                 }else if("Pendaftar".equals(jenisAkun)){
-                    String insertQuery = "INSERT INTO temp_daftar_akun (id, jenis_akun, username, password, nama, jenis_kelamin, pendidikan_saat_ini, umur) VALUES ('"
+                    String insertQuery = "INSERT INTO temp_daftar_akun (id, jenis_akun, username, password, nama, jenis_kelamin, pendidikan_saat_ini, umur, pengalaman_organisasi, pengalaman_lainnya) VALUES ('"
                             + id + "', '"
                             + jenisAkun + "', '"
                             + username + "', '"
@@ -163,7 +103,9 @@ public class ControllerLogin {
                             + nama + "', '"
                             + jenisKelamin + "', '"
                             + pendidikanSaatIni + "', '"
-                            + umur + "');";
+                            + umur + "', '"
+                            + pengalamanOrganisasi + "', '"
+                            + pengalamanLainnya + "');";
                     stm.executeUpdate(insertQuery);                    
                 }
                 
