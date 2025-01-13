@@ -244,26 +244,29 @@ public class SeleksiPendaftarFrame extends javax.swing.JFrame {
         String nama = txtNama.getText();
         
         String judul;
-        try {
-            judul = mengambilJudul();
+        int konfirmasi = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin menerima pendaftar ini?", "Konfirmasi Penerimaan", JOptionPane.YES_NO_OPTION);
+        if (konfirmasi == JOptionPane.YES_NO_OPTION) {  
             try {
-                Statement stm = conn.createStatement();
-                String query2 = "INSERT INTO hasil_seleksi "
-                    + "(nama, judul, status)"
-                    + "values ('" + nama + "', '" + judul + "', 'Diterima')";
-                String query = "DELETE FROM temp_daftar_pendaftar_magang"
-                    + " WHERE nama = '"
-                    + nama + "';";
-                stm.executeUpdate(query2);            
-                stm.executeUpdate(query);
-                new SeleksiPendaftarFrame().setVisible(false); 
-                dispose();
+                judul = mengambilJudul();
+                try {
+                    Statement stm = conn.createStatement();
+                    String query2 = "INSERT INTO hasil_seleksi "
+                        + "(nama, judul, status)"
+                        + "values ('" + nama + "', '" + judul + "', 'Diterima')";
+                    String query = "DELETE FROM temp_daftar_pendaftar_magang"
+                        + " WHERE nama = '"
+                        + nama + "';";
+                    stm.executeUpdate(query2);            
+                    stm.executeUpdate(query);
+                    new SeleksiPendaftarFrame().setVisible(false); 
+                    dispose();
+                } catch (SQLException ex) {
+                    System.out.println(ex.toString());
+                }                    
             } catch (SQLException ex) {
-                System.out.println(ex.toString());
-            }            
-        } catch (SQLException ex) {
-            Logger.getLogger(SeleksiPendaftarFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+                Logger.getLogger(SeleksiPendaftarFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }                     
+        }        
     }//GEN-LAST:event_btnTerimaActionPerformed
 
     private void btnTolakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTolakActionPerformed
@@ -272,25 +275,28 @@ public class SeleksiPendaftarFrame extends javax.swing.JFrame {
         String nama = txtNama.getText();
         
         String judul;
-        try {
-            judul = mengambilJudul();
+        int konfirmasi = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin menolak pendaftar ini?", "Konfirmasi Penolakan", JOptionPane.YES_NO_OPTION);
+        if (konfirmasi == JOptionPane.YES_NO_OPTION) {  
             try {
-                Statement stm = conn.createStatement();
-                String query2 = "INSERT INTO hasil_seleksi "
-                    + "(nama, judul, status)"
-                    + "values ('" + nama + "', '" + judul + "', 'Ditolak')";
-                String query = "DELETE FROM temp_daftar_pendaftar_magang"
-                    + " WHERE nama = '"
-                    + nama + "';";
-                stm.executeUpdate(query2);            
-                stm.executeUpdate(query);
-                new SeleksiPendaftarFrame().setVisible(false); 
-                dispose();
+                judul = mengambilJudul();
+                try {
+                    Statement stm = conn.createStatement();
+                    String query2 = "INSERT INTO hasil_seleksi "
+                        + "(nama, judul, status)"
+                        + "values ('" + nama + "', '" + judul + "', 'Ditolak')";
+                    String query = "DELETE FROM temp_daftar_pendaftar_magang"
+                        + " WHERE nama = '"
+                        + nama + "';";
+                    stm.executeUpdate(query2);            
+                    stm.executeUpdate(query);
+                    new SeleksiPendaftarFrame().setVisible(false); 
+                    dispose();
+                } catch (SQLException ex) {
+                    System.out.println(ex.toString());
+                }            
             } catch (SQLException ex) {
-                System.out.println(ex.toString());
-            }            
-        } catch (SQLException ex) {
-            Logger.getLogger(SeleksiPendaftarFrame.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SeleksiPendaftarFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }                     
         }
     }//GEN-LAST:event_btnTolakActionPerformed
 
