@@ -36,7 +36,7 @@ public class SeleksiPendaftarPanel extends javax.swing.JPanel {
     private Connection con = conMan.connectDb();;
     private String judulMagang = null ;
     
-    public SeleksiPendaftarPanel() {
+    public SeleksiPendaftarPanel(){
         initComponents();
         
         model = new DefaultTableModel();
@@ -94,8 +94,8 @@ public class SeleksiPendaftarPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) tabelMagang.getModel();
 
         dtm.setRowCount(0);
-
-        List<Magang> listMagang = conMagang.showMagang();
+        
+        List<Magang> listMagang = conMagang.showMagangBerdasarkanPenyelenggara();
         String[] data = new String[8];
         for (Magang newMagang : listMagang){
             data[0] = newMagang.getJudulMagang();
@@ -276,26 +276,22 @@ public class SeleksiPendaftarPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSearchJudulMagang)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtSearchJudulMagang, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSearchJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(textUsername6)
-                            .addComponent(textUsername7)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtSearchNamaPendaftar, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSearchNama, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textUsername6)
+                                    .addComponent(textUsername7))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtSearchNamaPendaftar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSearchJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearchNama, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(413, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,9 +299,9 @@ public class SeleksiPendaftarPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(textUsername6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSearchJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSearchJudulMagang, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearchJudulMagang, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -314,12 +310,9 @@ public class SeleksiPendaftarPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearchNamaPendaftar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchNama, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(382, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(299, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(27, 27, 27)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -330,8 +323,11 @@ public class SeleksiPendaftarPanel extends javax.swing.JPanel {
     private void btnSearchJudulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchJudulActionPerformed
         try {
             String judulMagang = txtSearchJudulMagang.getText();
-            tampilkanDataMagang(judulMagang);
-
+            if (judulMagang.isEmpty()){
+                getDataMagang();
+            }else{
+                tampilkanDataMagang(judulMagang);                
+            }
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Anda Salah Memasukkan Judul!");
         }
@@ -397,8 +393,16 @@ public class SeleksiPendaftarPanel extends javax.swing.JPanel {
 
     private void btnSearchNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchNamaActionPerformed
         try {
-            String namaPendaftar = txtSearchNamaPendaftar.getText();
-            tampilkanDataPendaftar(namaPendaftar);
+            if (judulMagang.isEmpty()){
+                tampilkanDataPendaftarBerdasarkanMagang(judulMagang);
+            }else{
+                String namaPendaftar = txtSearchNamaPendaftar.getText();
+                tampilkanDataPendaftar(namaPendaftar);               
+            }
+                        
+            
+            
+
 
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Anda Salah Memasukkan Judul!");

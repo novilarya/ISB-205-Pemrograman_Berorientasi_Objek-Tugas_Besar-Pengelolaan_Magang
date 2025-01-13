@@ -45,7 +45,7 @@ public class KelolaMagangForm extends javax.swing.JPanel {
 
         dtm.setRowCount(0);
 
-        List<Magang> listMagang = conMagang.showMagang();
+        List<Magang> listMagang = conMagang.showMagangBerdasarkanPenyelenggara();
         String[] data = new String[8];
         for (Magang newMagang : listMagang){
             data[0] = newMagang.getJudulMagang();
@@ -457,7 +457,13 @@ public class KelolaMagangForm extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         try {
             String judulMagang = txtSearchJudulMagang.getText();
-            tampilkanDataMagang(judulMagang);
+            if (judulMagang.isEmpty()){
+                getData();
+            }else{
+                tampilkanDataMagang(judulMagang);                
+            }
+            
+
 
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Anda Salah Memasukkan Judul!");
