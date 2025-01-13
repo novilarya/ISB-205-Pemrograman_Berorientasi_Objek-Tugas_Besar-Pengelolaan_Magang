@@ -85,6 +85,7 @@ public class LoginUtama extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         textRegisterPenyelenggara9 = new javax.swing.JLabel();
         textBelumPunyaAkun9 = new javax.swing.JLabel();
+        labelImageBackgound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,17 +202,26 @@ public class LoginUtama extends javax.swing.JFrame {
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
+        labelImageBackgound.setIcon(new javax.swing.ImageIcon("C:\\Novila Arya\\Sekolah\\ITENAS\\Semester 3\\ISB-205\\Program\\Tugas Besar\\loginRegisIcon.png")); // NOI18N
+        labelImageBackgound.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 415, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(labelImageBackgound, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(labelImageBackgound)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -290,6 +300,7 @@ public class LoginUtama extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbShowPassword;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel20;
+    private javax.swing.JLabel labelImageBackgound;
     private javax.swing.JLabel textBelumPunyaAkun9;
     private javax.swing.JLabel textPassword9;
     private javax.swing.JLabel textRegisterPenyelenggara9;
