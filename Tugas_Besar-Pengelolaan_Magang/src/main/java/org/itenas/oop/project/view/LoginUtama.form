@@ -257,7 +257,15 @@
         <Component class="javax.swing.JLabel" name="labelImageBackgound">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+<<<<<<< HEAD
               <Image iconType="2" name="C:\Novila Arya\Sekolah\ITENAS\Semester 3\ISB-205\Program\Tugas Besar\logregicon350.png"/>
+=======
+<<<<<<< HEAD
+              <Image iconType="2" name="D:\Semester 3\TUBES\ISB-205-Pemrograman_Berorientasi_Objek-Tugas_Besar-Pengelolaan_Magang\Tugas_Besar-Pengelolaan_Magang\src\main\java\org\itenas\oop\project\icon\loginRegisIcon.png"/>
+=======
+              <Image iconType="2" name="C:\Novila Arya\Sekolah\ITENAS\Semester 3\ISB-205\Program\Tugas Besar\logregicon350.png"/>
+>>>>>>> 645bc8cb97eb100ddb7d4dbf8ce044fa0678a38f
+>>>>>>> 944383ea883770aace8b90080583d0bd80a6becb
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
