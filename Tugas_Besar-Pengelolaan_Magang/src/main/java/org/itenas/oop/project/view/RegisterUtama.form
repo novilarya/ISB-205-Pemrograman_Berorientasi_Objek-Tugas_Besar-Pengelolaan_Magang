@@ -342,7 +342,7 @@
         <Component class="javax.swing.JLabel" name="labelImageBackgound">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Novila Arya\Sekolah\ITENAS\Semester 3\ISB-205\Program\Tugas Besar\loginRegisIcon.png"/>
+              <Image iconType="2" name="D:\Semester 3\TUBES\ISB-205-Pemrograman_Berorientasi_Objek-Tugas_Besar-Pengelolaan_Magang\Tugas_Besar-Pengelolaan_Magang\src\main\java\org\itenas\oop\project\icon\loginRegisIcon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>

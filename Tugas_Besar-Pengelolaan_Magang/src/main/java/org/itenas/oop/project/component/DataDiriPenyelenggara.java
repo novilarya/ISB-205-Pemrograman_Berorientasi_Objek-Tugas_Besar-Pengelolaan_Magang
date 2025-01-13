@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import org.itenas.oop.project.connection.ConnectionManager;
+import org.itenas.oop.project.view.LoginUtama;
 
 /**
  *
@@ -189,18 +190,18 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
         String newUsername = txtUsername.getText();
         int id = 0;
         conMan = new ConnectionManager();
-        conn = conMan.connectDb(); 
-        
+        conn = conMan.connectDb();
+
         try {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT id FROM temp_daftar_akun;");
-            if (rs.next()) { 
-               id = rs.getInt("id"); 
+            if (rs.next()) {
+                id = rs.getInt("id");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         String query = "UPDATE daftar_akun SET nama = '"
                 + newNama + "', instansi = '"
                 + newInstansi + "', username = '"
@@ -209,8 +210,20 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
         try {
             Statement stm = conn.createStatement();
             stm.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Update berhasil", "Pesan", JOptionPane.INFORMATION_MESSAGE);        
-        } catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Update berhasil silahkan login ulang!", "Pesan", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                conMan = new ConnectionManager();
+                conn = conMan.connectDb();
+                stm.executeUpdate("TRUNCATE TABLE temp_daftar_akun;");
+                new LoginUtama().setVisible(true);
+                javax.swing.JFrame topFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+                if (topFrame != null) {
+                    topFrame.dispose();
+                }
+            } catch (SQLException ex) {
+                System.out.println("error: " + ex.getMessage());
+            }
+        } catch (SQLException ex) {
             System.out.println("error: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
