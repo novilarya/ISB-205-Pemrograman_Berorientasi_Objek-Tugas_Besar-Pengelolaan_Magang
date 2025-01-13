@@ -32,13 +32,13 @@ import org.itenas.oop.project.repository.RoundedPanel;
  * @author aryan
  */
 public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
-    private Boolean hasil;
+     private Boolean hasil;
     private ControllerMagang conMagang = new ControllerMagang();
     private DefaultTableModel model;
-    private ConnectionManager conMan = new ConnectionManager();
-    private Connection con = conMan.connectDb();
-
-    public final void getData() {
+    private ConnectionManager conMan;
+    private Connection conn;
+    
+    public final void getData(String searchKeyword) {
     jPanel3.removeAll();
     jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
     
@@ -47,19 +47,54 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
     
     List<Magang> listMagang = conMagang.showMagang();
     
+    // Filter magang berdasarkan keyword
     for (Magang magang : listMagang) {
-        JPanel itemPanel = createInternshipPanel(magang);
-        jPanel3.add(itemPanel);
-        // Menambah jarak 20 pixel antara panel
-        jPanel3.add(Box.createRigidArea(new Dimension(0, 20))); 
+        if (searchKeyword == null || searchKeyword.isEmpty() || 
+            matchesSearch(magang, searchKeyword.toLowerCase())) {
+            JPanel itemPanel = createInternshipPanel(magang);
+            jPanel3.add(itemPanel);
+            // Menambah jarak 20 pixel antara panel
+            jPanel3.add(Box.createRigidArea(new Dimension(0, 20))); 
+        }
     }
     
     jPanel3.add(Box.createVerticalGlue());
     jPanel3.revalidate();
     jPanel3.repaint();
+}
+    // Method untuk mengecek apakah magang sesuai dengan keyword
+private boolean matchesSearch(Magang magang, String keyword) {
+    return magang.getJudulMagang().toLowerCase().contains(keyword) ||
+           magang.getPenyelenggara().toLowerCase().contains(keyword) ||
+           magang.getLokasi().toLowerCase().contains(keyword) ||
+           magang.getTipeMagang().toLowerCase().contains(keyword) ||
+           magang.getPosisiMagang().toLowerCase().contains(keyword) ||
+           magang.getDeskripsiMagang().toLowerCase().contains(keyword) ||
+           magang.getKualifikasiMagang().toLowerCase().contains(keyword);
+}
+       private void tampilkanDataMagang(String judulMagang){
+        Magang magang = new Magang();
+        magang = conMagang.mencariBerdasarkanJudul(judulMagang);
+        
+        
+        DefaultTableModel dtm = (DefaultTableModel) tabelMagang.getModel();
+        dtm.setRowCount(0);
+        
+        if (magang != null){
+            String[] data = new String[7];
+            data[0] = magang.getJudulMagang();
+            data[1] = magang.getPenyelenggara();
+            data[2] = magang.getLokasi();
+            data[3] = magang.getTipeMagang();
+            data[4] = magang.getPosisiMagang();
+            data[5] = magang.getDeskripsiMagang();
+            data[6] = magang.getKualifikasiMagang();
+            dtm.addRow(data);
+        }else{
+            JOptionPane.showMessageDialog(null,"Data dengan judul " + judulMagang + " tidak ditemukan!");
+        }
     }
-
-    
+       
    private JPanel createInternshipPanel(Magang magang) {
     RoundedPanel panel = new RoundedPanel(30); // Sudut melingkar dengan radius 30
     panel.setLayout(new BorderLayout(10, 10));
@@ -147,14 +182,6 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
             jTextArea2.setEditable(false);
             jTextArea3.setEditable(false);
             jTextArea4.setEditable(false);
-            String judul = jLabel1.getText();       
-            try {
-                Statement stm = con.createStatement();
-                String query = "UPDATE temp_daftar_akun SET judul = '" + judul + "' LIMIT 1;";
-                stm.executeUpdate(query);
-            } catch (SQLException ex) {
-                //Logger.getLogger(SeleksiPendaftarForm.class.getName()).log(Level.SEVERE, null, ex);
-            }   
         }
     }
     
@@ -177,7 +204,7 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
         initComponents();
         
         // Configure scroll pane
-        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+       jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         
         // Initialize text areas
         configureTextArea(jTextArea1);
@@ -186,7 +213,7 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
         configureTextArea(jTextArea4);
         
         // Load initial data
-        getData();        
+        getData(String searchKeyword);          
     }
 
     /**
@@ -203,6 +230,8 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
         jPanel4 = new org.itenas.oop.project.component.CardMagang();
         Detail = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        Search = new javax.swing.JButton();
+        Searching = new javax.swing.JTextField();
         cardMagang1 = new org.itenas.oop.project.component.CardMagang();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -233,7 +262,6 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Deskripsi");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -259,45 +287,56 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        Search.setText("Search");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(Searching)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Search)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Search)
+                    .addComponent(Searching, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(708, Short.MAX_VALUE))
+                .addContainerGap(660, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel3);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Judul");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         KualifikasiMagang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        KualifikasiMagang.setForeground(new java.awt.Color(0, 0, 0));
         KualifikasiMagang.setText("Kualifikasi");
 
         LokasiMagang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        LokasiMagang.setForeground(new java.awt.Color(0, 0, 0));
         LokasiMagang.setText("Lokasi");
 
         DeskripsiMagang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DeskripsiMagang.setForeground(new java.awt.Color(0, 0, 0));
         DeskripsiMagang.setText("Posisi");
 
         DeskripsiMagang1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DeskripsiMagang1.setForeground(new java.awt.Color(0, 0, 0));
         DeskripsiMagang1.setText("Deskripsi ");
 
         jTextArea1.setColumns(20);
@@ -411,6 +450,16 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
             //Logger.getLogger(SeleksiPendaftarForm.class.getName()).log(Level.SEVERE, null, ex);
         }              
     }//GEN-LAST:event_jButtonDaftarActionPerformed
+
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        // TODO add your handling code here:
+          try {
+        String searchKeyword = Searching.getText(); // Gunakan jTextField1 yang sudah ada
+        getData(searchKeyword);
+    } catch(Exception ex) {
+        JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat mencari data: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_SearchActionPerformed
     public class InternshipListItem extends javax.swing.JPanel {
     private Magang magang;
     private MelihatDaftarMagangPendaftar parent;
@@ -458,6 +507,8 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
     private javax.swing.JButton Detail;
     private javax.swing.JLabel KualifikasiMagang;
     private javax.swing.JLabel LokasiMagang;
+    private javax.swing.JButton Search;
+    private javax.swing.JTextField Searching;
     private org.itenas.oop.project.component.CardMagang cardMagang1;
     private javax.swing.JButton jButtonDaftar;
     private javax.swing.JLabel jLabel1;
