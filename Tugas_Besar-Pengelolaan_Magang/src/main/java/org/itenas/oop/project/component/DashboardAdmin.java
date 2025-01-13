@@ -83,22 +83,20 @@ public class DashboardAdmin extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        cardMagang1 = new org.itenas.oop.project.component.CardMagang();
         txtDaftarAdmin = new javax.swing.JLabel();
         txtSumAdmin = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        cardMagang2 = new org.itenas.oop.project.component.CardMagang();
         txtDaftarPenyelenggara = new javax.swing.JLabel();
         txtSumPenyelenggara = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        txtDaftarMagang = new javax.swing.JLabel();
-        txtSumMagang = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        cardMagang3 = new org.itenas.oop.project.component.CardMagang();
         txtDaftarPendaftar = new javax.swing.JLabel();
         txtSumPendaftar = new javax.swing.JLabel();
+        cardMagang4 = new org.itenas.oop.project.component.CardMagang();
+        txtDaftarMagang = new javax.swing.JLabel();
+        txtSumMagang = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(239, 236, 229));
-
-        jPanel1.setBackground(new java.awt.Color(146, 180, 236));
 
         txtDaftarAdmin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtDaftarAdmin.setForeground(new java.awt.Color(51, 51, 51));
@@ -109,33 +107,30 @@ public class DashboardAdmin extends javax.swing.JPanel {
             }
         });
 
-        txtSumAdmin.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtSumAdmin.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
         txtSumAdmin.setForeground(new java.awt.Color(51, 51, 51));
         txtSumAdmin.setText("SUM");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout cardMagang1Layout = new javax.swing.GroupLayout(cardMagang1);
+        cardMagang1.setLayout(cardMagang1Layout);
+        cardMagang1Layout.setHorizontalGroup(
+            cardMagang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardMagang1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(cardMagang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDaftarAdmin)
                     .addComponent(txtSumAdmin))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+        cardMagang1Layout.setVerticalGroup(
+            cardMagang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardMagang1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addComponent(txtDaftarAdmin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSumAdmin)
-                .addGap(18, 18, 18))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
-
-        jPanel2.setBackground(new java.awt.Color(146, 180, 236));
-        jPanel2.setPreferredSize(new java.awt.Dimension(261, 164));
 
         txtDaftarPenyelenggara.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtDaftarPenyelenggara.setForeground(new java.awt.Color(51, 51, 51));
@@ -146,33 +141,59 @@ public class DashboardAdmin extends javax.swing.JPanel {
             }
         });
 
-        txtSumPenyelenggara.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtSumPenyelenggara.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
         txtSumPenyelenggara.setForeground(new java.awt.Color(51, 51, 51));
         txtSumPenyelenggara.setText("SUM");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout cardMagang2Layout = new javax.swing.GroupLayout(cardMagang2);
+        cardMagang2.setLayout(cardMagang2Layout);
+        cardMagang2Layout.setHorizontalGroup(
+            cardMagang2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardMagang2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(cardMagang2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDaftarPenyelenggara)
                     .addComponent(txtSumPenyelenggara))
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+        cardMagang2Layout.setVerticalGroup(
+            cardMagang2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardMagang2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(txtDaftarPenyelenggara)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSumPenyelenggara)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(txtDaftarPenyelenggara)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(txtSumPenyelenggara)
-                .addGap(17, 17, 17))
-        );
 
-        jPanel3.setBackground(new java.awt.Color(146, 180, 236));
-        jPanel3.setPreferredSize(new java.awt.Dimension(261, 164));
+        txtDaftarPendaftar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtDaftarPendaftar.setForeground(new java.awt.Color(51, 51, 51));
+        txtDaftarPendaftar.setText("Jumlah daftar Pendaftar");
+
+        txtSumPendaftar.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
+        txtSumPendaftar.setForeground(new java.awt.Color(51, 51, 51));
+        txtSumPendaftar.setText("SUM");
+
+        javax.swing.GroupLayout cardMagang3Layout = new javax.swing.GroupLayout(cardMagang3);
+        cardMagang3.setLayout(cardMagang3Layout);
+        cardMagang3Layout.setHorizontalGroup(
+            cardMagang3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardMagang3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cardMagang3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDaftarPendaftar)
+                    .addComponent(txtSumPendaftar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        cardMagang3Layout.setVerticalGroup(
+            cardMagang3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardMagang3Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(txtDaftarPendaftar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSumPendaftar)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
 
         txtDaftarMagang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtDaftarMagang.setForeground(new java.awt.Color(51, 51, 51));
@@ -183,61 +204,29 @@ public class DashboardAdmin extends javax.swing.JPanel {
             }
         });
 
-        txtSumMagang.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtSumMagang.setFont(new java.awt.Font("Segoe UI", 0, 50)); // NOI18N
         txtSumMagang.setForeground(new java.awt.Color(51, 51, 51));
         txtSumMagang.setText("SUM");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout cardMagang4Layout = new javax.swing.GroupLayout(cardMagang4);
+        cardMagang4.setLayout(cardMagang4Layout);
+        cardMagang4Layout.setHorizontalGroup(
+            cardMagang4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardMagang4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(cardMagang4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDaftarMagang)
                     .addComponent(txtSumMagang))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+        cardMagang4Layout.setVerticalGroup(
+            cardMagang4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardMagang4Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addComponent(txtDaftarMagang)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSumMagang)
-                .addGap(14, 14, 14))
-        );
-
-        jPanel4.setBackground(new java.awt.Color(146, 180, 236));
-        jPanel4.setPreferredSize(new java.awt.Dimension(261, 164));
-
-        txtDaftarPendaftar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtDaftarPendaftar.setForeground(new java.awt.Color(51, 51, 51));
-        txtDaftarPendaftar.setText("Jumlah daftar Pendaftar");
-
-        txtSumPendaftar.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        txtSumPendaftar.setForeground(new java.awt.Color(51, 51, 51));
-        txtSumPendaftar.setText("SUM");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDaftarPendaftar)
-                    .addComponent(txtSumPendaftar))
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(txtDaftarPendaftar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(txtSumPendaftar)
-                .addGap(17, 17, 17))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -245,28 +234,28 @@ public class DashboardAdmin extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48))
+                    .addComponent(cardMagang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cardMagang4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cardMagang3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cardMagang2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(233, Short.MAX_VALUE))
+                    .addComponent(cardMagang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cardMagang2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cardMagang4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cardMagang3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -287,10 +276,10 @@ public class DashboardAdmin extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private org.itenas.oop.project.component.CardMagang cardMagang1;
+    private org.itenas.oop.project.component.CardMagang cardMagang2;
+    private org.itenas.oop.project.component.CardMagang cardMagang3;
+    private org.itenas.oop.project.component.CardMagang cardMagang4;
     private javax.swing.JLabel txtDaftarAdmin;
     private javax.swing.JLabel txtDaftarMagang;
     private javax.swing.JLabel txtDaftarPendaftar;
