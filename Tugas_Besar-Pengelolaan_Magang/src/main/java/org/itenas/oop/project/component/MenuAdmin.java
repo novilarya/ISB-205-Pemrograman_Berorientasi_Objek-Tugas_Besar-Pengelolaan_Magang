@@ -45,6 +45,7 @@ public class MenuAdmin extends javax.swing.JPanel {
         listMenuAdmin1.addItem(new ModelMenu("Tambah Admin", ModelMenu.MenuType.MENU));
         listMenuAdmin1.addItem(new ModelMenu("Daftar Admin", ModelMenu.MenuType.MENU));
         listMenuAdmin1.addItem(new ModelMenu("Daftar Magang", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("Daftar Pendaftar", ModelMenu.MenuType.MENU));
         listMenuAdmin1.addItem(new ModelMenu("Daftar Penyelenggara", ModelMenu.MenuType.MENU));
         listMenuAdmin1.addItem(new ModelMenu("Logout", ModelMenu.MenuType.MENU));
     }

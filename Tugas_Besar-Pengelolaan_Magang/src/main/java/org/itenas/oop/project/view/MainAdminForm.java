@@ -16,6 +16,7 @@ import org.itenas.oop.project.component.DashboardAdmin;
 import org.itenas.oop.project.component.TambahAdminForm;
 import org.itenas.oop.project.component.MelihatDaftarAdmin;
 import org.itenas.oop.project.component.MelihatDaftarMagangAdminDanPenyelenggara;
+import org.itenas.oop.project.component.MelihatDaftarPendaftar;
 import org.itenas.oop.project.component.MelihatDaftarPenyelenggara;
 import org.itenas.oop.project.component.SeleksiPendaftarPanel;
 import org.itenas.oop.project.connection.ConnectionManager;
@@ -46,6 +47,10 @@ public class MainAdminForm extends javax.swing.JFrame {
                 } else if (index == 3) {
                     setForm(new MelihatDaftarMagangAdminDanPenyelenggara());
                 } else if (index == 4) {
+                    setForm(new MelihatDaftarPendaftar());
+                } else if (index == 5) {
+                    setForm(new MelihatDaftarMagangAdminDanPenyelenggara());
+                } else if (index == 6) {
                     setForm(new MelihatDaftarPenyelenggara());
                 } else if (index == 5) {
                     int konfirmasi = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin logout?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
