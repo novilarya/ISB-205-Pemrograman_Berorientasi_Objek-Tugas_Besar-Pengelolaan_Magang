@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import org.itenas.oop.project.connection.ConnectionManager;
+import org.itenas.oop.project.view.LoginUtama;
+import org.itenas.oop.project.view.MainPendaftarForm;
 
 /**
  *
@@ -38,7 +40,9 @@ public class DataDiriPendaftar extends javax.swing.JPanel {
                 txtJenisKelamin.setText(rs.getString("jenis_kelamin"));
                 txtPendidikan.setText(rs.getString("pendidikan_saat_ini"));
                 txtUmur.setText(rs.getString("umur"));
-                txtUsername.setText(rs.getString("username"));                
+                txtUsername.setText(rs.getString("username"));  
+                txtPengalamanOrganisasi.setText(rs.getString("pengalaman_organisasi"));
+                txtPengalamanLainnya.setText(rs.getString("pengalaman_lainnya"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -67,6 +71,12 @@ public class DataDiriPendaftar extends javax.swing.JPanel {
         txtUmur = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         btnCekPassword = new javax.swing.JButton();
+        textOrganisasi = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtPengalamanOrganisasi = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtPengalamanLainnya = new javax.swing.JTextArea();
+        textPengalamanLainnya = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(239, 236, 229));
 
@@ -145,6 +155,28 @@ public class DataDiriPendaftar extends javax.swing.JPanel {
             }
         });
 
+        textOrganisasi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        textOrganisasi.setForeground(new java.awt.Color(51, 51, 51));
+        textOrganisasi.setText("Pengalaman Organisasi");
+
+        txtPengalamanOrganisasi.setBackground(new java.awt.Color(239, 239, 239));
+        txtPengalamanOrganisasi.setColumns(20);
+        txtPengalamanOrganisasi.setForeground(new java.awt.Color(51, 51, 51));
+        txtPengalamanOrganisasi.setRows(5);
+        txtPengalamanOrganisasi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 191, 191)));
+        jScrollPane2.setViewportView(txtPengalamanOrganisasi);
+
+        txtPengalamanLainnya.setBackground(new java.awt.Color(239, 239, 239));
+        txtPengalamanLainnya.setColumns(20);
+        txtPengalamanLainnya.setForeground(new java.awt.Color(51, 51, 51));
+        txtPengalamanLainnya.setRows(5);
+        txtPengalamanLainnya.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 191, 191)));
+        jScrollPane3.setViewportView(txtPengalamanLainnya);
+
+        textPengalamanLainnya.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        textPengalamanLainnya.setForeground(new java.awt.Color(51, 51, 51));
+        textPengalamanLainnya.setText("Pengalaman Lainnya (Pekerjaan/Penghargaan/Keahlian)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,30 +184,38 @@ public class DataDiriPendaftar extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtUsername)
                     .addComponent(txtNama)
                     .addComponent(txtJenisKelamin)
-                    .addComponent(txtPendidikan, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtUmur)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 542, Short.MAX_VALUE)
                         .addComponent(btnCekPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtUsername)
+                    .addComponent(txtUmur)
+                    .addComponent(txtPendidikan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textInstansi, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textInstansi, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textNama1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textNama2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 588, Short.MAX_VALUE)))
+                            .addComponent(textUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textNama2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textOrganisasi, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textPengalamanLainnya, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(textPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textInstansi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,22 +224,26 @@ public class DataDiriPendaftar extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textNama2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPendidikan, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUmur, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textPassword)
+                .addComponent(textNama2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPendidikan, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(textOrganisasi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textPengalamanLainnya)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCekPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -218,6 +262,8 @@ public class DataDiriPendaftar extends javax.swing.JPanel {
         String newPendidikan = txtPendidikan.getText();
         int newUmur = Integer.parseInt(txtUmur.getText());
         String newUsername = txtUsername.getText();
+        String newPengalamanOrganisasi = txtPengalamanOrganisasi.getText();
+        String newPengalamanLainnya = txtPengalamanLainnya.getText();
         int id = 0;
         conMan = new ConnectionManager();
         conn = conMan.connectDb(); 
@@ -236,12 +282,26 @@ public class DataDiriPendaftar extends javax.swing.JPanel {
                 + newNama +"', jenis_kelamin = '"
                 + newJenisKelamin +"', pendidikan_saat_ini = '"
                 + newPendidikan +"', umur = '"
-                + newUmur +"', username = '"
-                + newUsername + "' WHERE id = " + id + ";";
+                + newUmur + "', username = '"
+                + newUsername + "', pengalaman_organisasi = '"
+                + newPengalamanOrganisasi + "', pengalaman_lainnya = '"
+                + newPengalamanLainnya + "' WHERE id = " + id + ";";
         try {
             Statement stm = conn.createStatement();
             stm.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Update berhasil", "Pesan", JOptionPane.INFORMATION_MESSAGE);        
+            JOptionPane.showMessageDialog(null, "Update berhasil silahkan login ulang!", "Pesan", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                conMan = new ConnectionManager();
+                conn = conMan.connectDb();
+                stm.executeUpdate("TRUNCATE TABLE temp_daftar_akun;");
+                new LoginUtama().setVisible(true);
+                javax.swing.JFrame topFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+                if (topFrame != null) {
+                    topFrame.dispose();
+                }
+            } catch (SQLException ex) {
+                System.out.println("error: " + ex.getMessage());                            
+            }
         } catch (SQLException ex){
             System.out.println("error: " + ex.getMessage());
         }
@@ -259,14 +319,20 @@ public class DataDiriPendaftar extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCekPassword;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel textInstansi;
     private javax.swing.JLabel textNama1;
     private javax.swing.JLabel textNama2;
+    private javax.swing.JLabel textOrganisasi;
     private javax.swing.JLabel textPassword;
+    private javax.swing.JLabel textPengalamanLainnya;
     private javax.swing.JLabel textUsername;
     private javax.swing.JTextField txtJenisKelamin;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtPendidikan;
+    private javax.swing.JTextArea txtPengalamanLainnya;
+    private javax.swing.JTextArea txtPengalamanOrganisasi;
     private javax.swing.JTextField txtUmur;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
