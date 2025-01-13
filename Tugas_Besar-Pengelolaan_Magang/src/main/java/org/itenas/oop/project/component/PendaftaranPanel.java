@@ -251,7 +251,7 @@ public class PendaftaranPanel extends javax.swing.JPanel {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         hasil = conPen.insertPendaftar(txtNama.getText(), txtJenisKelamin.getText(), txtPendidikan.getText(), Integer.parseInt(txtUmur.getText()), txtJudul.getText(), txtPengalamanOrganisasi.getText(), txtPengalamanLainnya.getText());
         if (hasil){
-            JOptionPane.showMessageDialog(null, "Data berhasil ditambahkan");
+            JOptionPane.showMessageDialog(null, "Anda Berhasil Melakukan Pendaftaran!");
         }else{
             JOptionPane.showMessageDialog(null, "Data gagal ditambahkan", " Pesan", JOptionPane.ERROR_MESSAGE);
         }

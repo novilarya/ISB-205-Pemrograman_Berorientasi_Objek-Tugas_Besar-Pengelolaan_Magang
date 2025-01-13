@@ -290,7 +290,7 @@ public class PendaftaranFrame extends javax.swing.JFrame {
         new PendaftaranFrame().setVisible(false);
         dispose();
         if (hasil){
-            JOptionPane.showMessageDialog(null, "Data berhasil ditambahkan");
+            JOptionPane.showMessageDialog(null, "Anda Berhasil Melakukan Pendaftaran!");
         }else{
             JOptionPane.showMessageDialog(null, "Data gagal ditambahkan", " Pesan", JOptionPane.ERROR_MESSAGE);
         }
