@@ -193,9 +193,15 @@ public class DataDiriAdmin extends javax.swing.JPanel {
                     topFrame.dispose();
                 }
             } catch (SQLException ex) {
+<<<<<<< HEAD
                 System.out.println("error: " + ex.getMessage());                            
             }
         } catch (SQLException ex){
+=======
+                System.out.println("error: " + ex.getMessage());
+            }
+        } catch (SQLException ex) {
+>>>>>>> 944383ea883770aace8b90080583d0bd80a6becb
             System.out.println("error: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnUpdateActionPerformed

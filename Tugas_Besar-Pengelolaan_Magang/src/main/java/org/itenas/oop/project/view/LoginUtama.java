@@ -15,6 +15,7 @@ public class LoginUtama extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
+        
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
     public void keyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
@@ -202,7 +203,15 @@ public class LoginUtama extends javax.swing.JFrame {
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
+<<<<<<< HEAD
         labelImageBackgound.setIcon(new javax.swing.ImageIcon("C:\\Novila Arya\\Sekolah\\ITENAS\\Semester 3\\ISB-205\\Program\\Tugas Besar\\logregicon350.png")); // NOI18N
+=======
+<<<<<<< HEAD
+        labelImageBackgound.setIcon(new javax.swing.ImageIcon("D:\\Semester 3\\TUBES\\ISB-205-Pemrograman_Berorientasi_Objek-Tugas_Besar-Pengelolaan_Magang\\Tugas_Besar-Pengelolaan_Magang\\src\\main\\java\\org\\itenas\\oop\\project\\icon\\loginRegisIcon.png")); // NOI18N
+=======
+        labelImageBackgound.setIcon(new javax.swing.ImageIcon("C:\\Novila Arya\\Sekolah\\ITENAS\\Semester 3\\ISB-205\\Program\\Tugas Besar\\logregicon350.png")); // NOI18N
+>>>>>>> 645bc8cb97eb100ddb7d4dbf8ce044fa0678a38f
+>>>>>>> 944383ea883770aace8b90080583d0bd80a6becb
         labelImageBackgound.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
