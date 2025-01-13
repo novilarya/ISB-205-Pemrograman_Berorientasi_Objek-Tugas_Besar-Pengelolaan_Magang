@@ -40,7 +40,7 @@ public class SeleksiPendaftarFrame extends javax.swing.JFrame {
         conn = conMan.connectDb();
         try{
             Statement stm = conn.createStatement();
-            String query = "SELECT daftar_pendaftar_magang.nama, daftar_pendaftar_magang.jenis_kelamin, daftar_pendaftar_magang.pendidikan_saat_ini, daftar_pendaftar_magang.umur " +
+            String query = "SELECT daftar_pendaftar_magang.nama, daftar_pendaftar_magang.jenis_kelamin, daftar_pendaftar_magang.pendidikan_saat_ini, daftar_pendaftar_magang.umur, daftar_pendaftar_magang.pengalaman_organisasi, daftar_pendaftar_magang.pengalaman_lainnya " +
                        "FROM daftar_pendaftar_magang " +
                        "INNER JOIN temp_daftar_pendaftar_magang " +
                        "ON temp_daftar_pendaftar_magang.nama = daftar_pendaftar_magang.nama;";
@@ -49,7 +49,9 @@ public class SeleksiPendaftarFrame extends javax.swing.JFrame {
                 txtNama.setText(rs.getString("nama"));
                 txtJenisKelamin.setText(rs.getString("jenis_kelamin"));
                 txtPendidikanSaatIni.setText(rs.getString("pendidikan_saat_ini"));
-                txtUmur.setText(rs.getString("umur"));    
+                txtUmur.setText(rs.getString("umur"));
+                txtPengalamanOrganisasi.setText(rs.getString("pengalaman_organisasi"));
+                txtPengalamanLainnya.setText(rs.getString("pengalaman_lainnya"));                   
             }
         } catch (SQLException ex){
             System.out.println(ex.toString());
@@ -95,6 +97,12 @@ public class SeleksiPendaftarFrame extends javax.swing.JFrame {
         btnTerima = new javax.swing.JButton();
         btnTolak = new javax.swing.JButton();
         btnKembali = new javax.swing.JButton();
+        textOrganisasi = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtPengalamanOrganisasi = new javax.swing.JTextArea();
+        textPengalamanLainnya = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtPengalamanLainnya = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -161,6 +169,28 @@ public class SeleksiPendaftarFrame extends javax.swing.JFrame {
             }
         });
 
+        textOrganisasi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        textOrganisasi.setForeground(new java.awt.Color(51, 51, 51));
+        textOrganisasi.setText("Pengalaman Organisasi");
+
+        txtPengalamanOrganisasi.setBackground(new java.awt.Color(239, 239, 239));
+        txtPengalamanOrganisasi.setColumns(20);
+        txtPengalamanOrganisasi.setForeground(new java.awt.Color(51, 51, 51));
+        txtPengalamanOrganisasi.setRows(5);
+        txtPengalamanOrganisasi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 191, 191)));
+        jScrollPane2.setViewportView(txtPengalamanOrganisasi);
+
+        textPengalamanLainnya.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        textPengalamanLainnya.setForeground(new java.awt.Color(51, 51, 51));
+        textPengalamanLainnya.setText("Pengalaman Lainnya (Pekerjaan/Penghargaan/Keahlian)");
+
+        txtPengalamanLainnya.setBackground(new java.awt.Color(239, 239, 239));
+        txtPengalamanLainnya.setColumns(20);
+        txtPengalamanLainnya.setForeground(new java.awt.Color(51, 51, 51));
+        txtPengalamanLainnya.setRows(5);
+        txtPengalamanLainnya.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 191, 191)));
+        jScrollPane3.setViewportView(txtPengalamanLainnya);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -170,21 +200,25 @@ public class SeleksiPendaftarFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNama, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                     .addComponent(txtJenisKelamin, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
-                    .addComponent(txtPendidikanSaatIni, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
-                    .addComponent(txtUmur, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textNama, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textNama1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textNama3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textNama2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTolak, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTerima, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnTerima, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUmur, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(txtPendidikanSaatIni, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textNama, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textNama1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textNama3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textNama2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textOrganisasi, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textPengalamanLainnya, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -199,19 +233,27 @@ public class SeleksiPendaftarFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textNama3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUmur, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textNama2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPendidikanSaatIni, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textNama3)
+                .addComponent(textOrganisasi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUmur, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textPengalamanLainnya)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTolak, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTerima, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -362,13 +404,19 @@ public class SeleksiPendaftarFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnTerima;
     private javax.swing.JButton btnTolak;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel textNama;
     private javax.swing.JLabel textNama1;
     private javax.swing.JLabel textNama2;
     private javax.swing.JLabel textNama3;
+    private javax.swing.JLabel textOrganisasi;
+    private javax.swing.JLabel textPengalamanLainnya;
     private javax.swing.JTextArea txtJenisKelamin;
     private javax.swing.JTextArea txtNama;
     private javax.swing.JTextArea txtPendidikanSaatIni;
+    private javax.swing.JTextArea txtPengalamanLainnya;
+    private javax.swing.JTextArea txtPengalamanOrganisasi;
     private javax.swing.JTextArea txtUmur;
     // End of variables declaration//GEN-END:variables
 }
