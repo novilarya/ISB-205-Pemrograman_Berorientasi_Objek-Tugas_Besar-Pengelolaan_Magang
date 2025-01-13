@@ -162,7 +162,7 @@ public class ControllerMagang {
             ResultSet rs = stm.executeQuery("SELECT hasil_seleksi.nama, hasil_seleksi.judul, hasil_seleksi.status " + 
                     "FROM hasil_seleksi INNER JOIN temp_daftar_akun " + 
                     "ON hasil_seleksi.nama = temp_daftar_akun.nama " +
-                    "WHERE (hasil_seleksi.nama = temp_daftar_akun.nama) && (judul LIKE '%" + judulMagang + "%');");            
+                    "WHERE (hasil_seleksi.nama = temp_daftar_akun.nama) && (hasil_seleksi.judul LIKE '%" + judulMagang + "%');");            
             while (rs.next()){
                 hasil.setNama(rs.getString("nama"));
                 hasil.setJudul(rs.getString("judul"));
