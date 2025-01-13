@@ -25,7 +25,7 @@ public class ControllerMagang {
         String instansi = null;       
         Connection conn = conMan.connectDb();
         Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT instansi from tempinstansi");
+        ResultSet rs = stm.executeQuery("SELECT instansi FROM temp_daftar_akun");
         
         try {
             while (rs.next()){
@@ -173,4 +173,32 @@ public class ControllerMagang {
         }    
         return hasil;
     }
+    
+    public List<Magang> showMagangBerdasarkanPenyelenggara(){
+        List<Magang> listMagang = new ArrayList<Magang>();
+        
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT daftar_magang.judul, daftar_magang.penyelenggara, daftar_magang.lokasi, " +
+                    "daftar_magang.tipe, daftar_magang.posisi, daftar_magang.deskripsi, daftar_magang.kualifikasi " +
+                    "FROM daftar_magang INNER JOIN temp_daftar_akun ON daftar_magang.penyelenggara = temp_daftar_akun.instansi " +
+                    "WHERE daftar_magang.penyelenggara = temp_daftar_akun.instansi");
+            while (rs.next()) {                
+                Magang magang = new Magang();
+                magang.setJudulMagang(rs.getString("judul"));
+                magang.setPenyelenggara(rs.getString("penyelenggara"));
+                magang.setLokasi(rs.getString("lokasi"));
+                magang.setTipeMagang(rs.getString("tipe"));
+                magang.setPosisiMagang(rs.getString("posisi"));
+                magang.setDeskripsiMagang(rs.getString("deskripsi"));
+                magang.setKualifikasiMagang(rs.getString("kualifikasi"));
+
+                listMagang.add(magang);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+        return listMagang;
+    }    
+    
 }
