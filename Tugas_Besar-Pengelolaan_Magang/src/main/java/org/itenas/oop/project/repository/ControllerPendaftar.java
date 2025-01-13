@@ -44,13 +44,13 @@ Scanner input = new Scanner(System.in);
         return instansi;
     }
     
-    public boolean insertPendaftar(String nama, String jenisKelamin, String pendidikanSaatIni, int umur, String judul){        
+    public boolean insertPendaftar(String nama, String jenisKelamin, String pendidikanSaatIni, int umur, String judul, String pengalamanOrganisasi, String pengalamanLainnya){        
        
         try {
             Statement stm = con.createStatement();
             String query2 = "INSERT INTO daftar_pendaftar_magang "
-                + "(nama, jenis_kelamin, pendidikan_saat_ini, umur, judul)"
-                + "values ('" + nama + "', '" + jenisKelamin + "', '" + pendidikanSaatIni + "', '" + umur + "', '" + judul + "')";        
+                + "(nama, jenis_kelamin, pendidikan_saat_ini, umur, judul, pengalaman_organisasi, pengalaman_lainnya)"
+                + "values ('" + nama + "', '" + jenisKelamin + "', '" + pendidikanSaatIni + "', '" + umur + "', '" + judul + "', '" + pengalamanOrganisasi + "', '" + pengalamanLainnya + "')";        
             stm.executeUpdate(query2);            
             return true;
         } catch (SQLException ex) {
@@ -59,38 +59,6 @@ Scanner input = new Scanner(System.in);
         } 
            
     }
-
- /*   public boolean updateMagang(String judulMagang, String penyelenggara, String lokasi, String tipeMagang, String posisiMagang, String deskripsiMagang, String kualifikasiMagang, String judul){
-        String query = "UPDATE daftarmagang SET judul = '"
-                + judulMagang + "', penyelenggara = '"
-                + penyelenggara + "', lokasi = '"                
-                + lokasi + "', tipe = '"
-                + tipeMagang + "', posisi = '"
-                + posisiMagang + "', deskripsi = '"
-                + deskripsiMagang + "', kualifikasi = '"
-                + kualifikasiMagang + "' WHERE judul = '"
-                + judul + "'";
-        try {
-            Statement stm = con.createStatement();
-            stm.executeUpdate(query);
-            return true;
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-            return false;
-        }
-    }*/    
-    
-/*    public boolean deleteMagang(String judulMagang){
-        String query = "DELETE FROM daftarmagang WHERE judul = '" + judulMagang + "'";
-        try {
-            Statement stm = con.createStatement();
-            stm.executeUpdate(query);
-            return true;
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-            return false;
-        }
-    }*/
     
     public MagangPendaftar mencariMagangPendaftarBerdasarkanNama(String namaPendaftar){
         MagangPendaftar magangPendaftar = new MagangPendaftar();

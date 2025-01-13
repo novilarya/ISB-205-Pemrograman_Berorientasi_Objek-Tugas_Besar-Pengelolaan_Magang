@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import org.itenas.oop.project.connection.ConnectionManager;
+import org.itenas.oop.project.view.LoginUtama;
 
 /**
  *
@@ -181,7 +182,19 @@ public class DataDiriAdmin extends javax.swing.JPanel {
         try {
             Statement stm = conn.createStatement();
             stm.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Update berhasil", "Pesan", JOptionPane.INFORMATION_MESSAGE);        
+            JOptionPane.showMessageDialog(null, "Update berhasil silahkan login ulang!", "Pesan", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                conMan = new ConnectionManager();
+                conn = conMan.connectDb();
+                stm.executeUpdate("TRUNCATE TABLE temp_daftar_akun;");
+                new LoginUtama().setVisible(true);
+                javax.swing.JFrame topFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+                if (topFrame != null) {
+                    topFrame.dispose();
+                }
+            } catch (SQLException ex) {
+                System.out.println("error: " + ex.getMessage());                            
+            }
         } catch (SQLException ex){
             System.out.println("error: " + ex.getMessage());
         }
