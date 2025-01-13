@@ -49,10 +49,8 @@ public class MainAdminForm extends javax.swing.JFrame {
                 } else if (index == 4) {
                     setForm(new MelihatDaftarPendaftar());
                 } else if (index == 5) {
-                    setForm(new MelihatDaftarMagangAdminDanPenyelenggara());
-                } else if (index == 6) {
                     setForm(new MelihatDaftarPenyelenggara());
-                } else if (index == 5) {
+                } else if (index == 6) {
                     int konfirmasi = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin logout?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
                     if (konfirmasi == JOptionPane.YES_NO_OPTION) {       
                         try {
