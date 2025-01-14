@@ -63,12 +63,12 @@ public class KelolaMagangForm extends javax.swing.JPanel {
         txtJudulPenyelenggara.setText("");
         txtLokasiPenyelenggara.setText("");
         txtPosisiPenyelenggara.setText("");
-        txtKualifikasiPenyelenggara.setText("");
+        txtDeskripsiPenyelenggara.setText("");
         txtKualifikasiPenyelenggara.setText("");
         txtJudulPenyelenggara.setEditable(true);
         txtLokasiPenyelenggara.setEditable(true);
         txtPosisiPenyelenggara.setEditable(true);
-        txtKualifikasiPenyelenggara.setEditable(true);
+        txtDeskripsiPenyelenggara.setEditable(true);
         txtKualifikasiPenyelenggara.setEditable(true);
     }    
  
@@ -279,7 +279,7 @@ public class KelolaMagangForm extends javax.swing.JPanel {
 
         txtDeskripsiPenyelenggara.setBackground(new java.awt.Color(239, 239, 239));
         txtDeskripsiPenyelenggara.setColumns(20);
-        txtDeskripsiPenyelenggara.setForeground(new java.awt.Color(191, 191, 191));
+        txtDeskripsiPenyelenggara.setForeground(new java.awt.Color(51, 51, 51));
         txtDeskripsiPenyelenggara.setRows(5);
         txtDeskripsiPenyelenggara.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(191, 191, 191), 1, true));
         jScrollPane2.setViewportView(txtDeskripsiPenyelenggara);
@@ -440,7 +440,7 @@ public class KelolaMagangForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        hasil = conMagang.insertMagang(txtJudulPenyelenggara.getText(), txtLokasiPenyelenggara.getText(), (String)txtTipeMagang.getSelectedItem(), txtPosisiPenyelenggara.getText(), txtKualifikasiPenyelenggara.getText(), txtKualifikasiPenyelenggara.getText());
+        hasil = conMagang.insertMagang(txtJudulPenyelenggara.getText(), txtLokasiPenyelenggara.getText(), (String)txtTipeMagang.getSelectedItem(), txtPosisiPenyelenggara.getText(), txtDeskripsiPenyelenggara.getText(), txtKualifikasiPenyelenggara.getText());
         if (hasil){
             JOptionPane.showMessageDialog(null, "Data berhasil ditambahkan");
             getData();
@@ -479,7 +479,7 @@ public class KelolaMagangForm extends javax.swing.JPanel {
         txtLokasiPenyelenggara.setText(model.getValueAt(i, 2).toString());
         txtTipeMagang.setSelectedItem(model.getValueAt(i, 3).toString());
         txtPosisiPenyelenggara.setText(model.getValueAt(i, 4).toString());
-        txtKualifikasiPenyelenggara.setText(model.getValueAt(i, 5).toString());
+        txtDeskripsiPenyelenggara.setText(model.getValueAt(i, 5).toString());
         txtKualifikasiPenyelenggara.setText(model.getValueAt(i, 6).toString());
     }//GEN-LAST:event_tabelMagangMouseClicked
 
