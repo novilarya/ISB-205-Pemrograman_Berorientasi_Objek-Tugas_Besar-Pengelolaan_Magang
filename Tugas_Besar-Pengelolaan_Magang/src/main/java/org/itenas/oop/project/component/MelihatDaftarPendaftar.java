@@ -41,12 +41,11 @@ public class MelihatDaftarPendaftar extends javax.swing.JPanel {
     model.addColumn("Jenis Kelamin");
     model.addColumn("Pendidikan saat ini");
     model.addColumn("Umur");
-    model.addColumn("Judul");
     tablePendaftar.setModel(model);
 
     try {
         Statement stmt = conn.createStatement();
-        String query = "SELECT * FROM daftar_pendaftar_magang";
+        String query = "SELECT nama, jenis_kelamin, pendidikan_saat_ini, umur FROM daftar_akun WHERE jenis_akun = 'Pendaftar'";
         ResultSet rs = stmt.executeQuery(query);
 
         while (rs.next()) {
@@ -54,8 +53,7 @@ public class MelihatDaftarPendaftar extends javax.swing.JPanel {
                 rs.getString("nama"),
                 rs.getString("jenis_kelamin"),
                 rs.getString("pendidikan_saat_ini"),
-                rs.getString("umur"), 
-                rs.getString("judul"), 
+                rs.getString("umur"),  
             });
         }
 
@@ -74,13 +72,12 @@ public class MelihatDaftarPendaftar extends javax.swing.JPanel {
         model.addColumn("Jenis Kelamin");
         model.addColumn("Pendidikan saat ini");
         model.addColumn("Umur");
-        model.addColumn("Judul");
         tablePendaftar.setModel(model);
         boolean hasil = false;
 
         try {
             Statement stmt = conn.createStatement();
-            String query = "SELECT * FROM daftar_pendaftar_magang WHERE nama LIKE '%" + namaPendaftar + "%'";
+            String query = "SELECT nama, jenis_kelamin, pendidikan_saat_ini, umur FROM daftar_akun WHERE jenis_akun = 'Pendaftar' AND nama LIKE '%" + namaPendaftar + "%'";
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
@@ -90,7 +87,6 @@ public class MelihatDaftarPendaftar extends javax.swing.JPanel {
                 rs.getString("jenis_kelamin"),
                 rs.getString("pendidikan_saat_ini"),
                 rs.getString("umur"), 
-                rs.getString("judul"),
                 });
             }
 
@@ -251,9 +247,9 @@ public class MelihatDaftarPendaftar extends javax.swing.JPanel {
             return;
         }
         
-        String username = tablePendaftar.getValueAt(pilihBaris, 1).toString();
+        String nama = tablePendaftar.getValueAt(pilihBaris, 0).toString();
 
-        int konfirmasi = JOptionPane.showConfirmDialog(this,"Apakah Anda yakin ingin menghapus admin dengan username: " + username + "?",
+        int konfirmasi = JOptionPane.showConfirmDialog(this,"Apakah Anda yakin ingin menghapus pendaftar dengan nama: " + nama + "?",
             "Konfirmasi Hapus",JOptionPane.YES_NO_OPTION);
 
         if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
@@ -261,7 +257,7 @@ public class MelihatDaftarPendaftar extends javax.swing.JPanel {
             Connection conn = conMan.connectDb();
             try {
                 Statement stmt = conn.createStatement();
-                String query = "DELETE FROM daftar_akun WHERE username = '" + username + "'";
+                String query = "DELETE FROM daftar_akun WHERE nama = '" + nama + "'";
                 int barisHapus = stmt.executeUpdate(query);
 
                 if (barisHapus > 0) {
