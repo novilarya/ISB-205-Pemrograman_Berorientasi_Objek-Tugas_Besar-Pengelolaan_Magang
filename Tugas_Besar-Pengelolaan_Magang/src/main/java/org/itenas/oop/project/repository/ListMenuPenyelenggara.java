@@ -61,7 +61,7 @@ public class ListMenuPenyelenggara<E extends Object> extends JList<E> {
                 if (o instanceof ModelMenu) {
                     data = (ModelMenu) o;
                 } else {
-                    data = new ModelMenu(o + "", ModelMenu.MenuType.EMPTY);
+                    data = new ModelMenu("", o + "", ModelMenu.MenuType.EMPTY);
                 }
                 MenuItem item = new MenuItem(data);
                 item.setSelected(selectedIndex == index);

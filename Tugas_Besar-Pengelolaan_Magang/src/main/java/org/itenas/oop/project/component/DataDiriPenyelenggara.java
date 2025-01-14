@@ -190,18 +190,18 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
         String newUsername = txtUsername.getText();
         int id = 0;
         conMan = new ConnectionManager();
-        conn = conMan.connectDb();
-
+        conn = conMan.connectDb(); 
+        
         try {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT id FROM temp_daftar_akun;");
-            if (rs.next()) {
-                id = rs.getInt("id");
+            if (rs.next()) { 
+               id = rs.getInt("id"); 
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
+        
         String query = "UPDATE daftar_akun SET nama = '"
                 + newNama + "', instansi = '"
                 + newInstansi + "', username = '"
@@ -210,11 +210,7 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
         try {
             Statement stm = conn.createStatement();
             stm.executeUpdate(query);
-<<<<<<< HEAD
-            JOptionPane.showMessageDialog(null, "Update berhasil silahkan login ulang!", "Pesan", JOptionPane.INFORMATION_MESSAGE);
-=======
             JOptionPane.showMessageDialog(null, "Update berhasil silahkan login ulang!", "Pesan", JOptionPane.INFORMATION_MESSAGE);        
->>>>>>> 645bc8cb97eb100ddb7d4dbf8ce044fa0678a38f
             try {
                 conMan = new ConnectionManager();
                 conn = conMan.connectDb();
@@ -225,15 +221,9 @@ public class DataDiriPenyelenggara extends javax.swing.JPanel {
                     topFrame.dispose();
                 }
             } catch (SQLException ex) {
-<<<<<<< HEAD
-                System.out.println("error: " + ex.getMessage());
-            }
-        } catch (SQLException ex) {
-=======
                 System.out.println("error: " + ex.getMessage());                            
             }        
         } catch (SQLException ex){
->>>>>>> 645bc8cb97eb100ddb7d4dbf8ce044fa0678a38f
             System.out.println("error: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
