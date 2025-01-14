@@ -78,14 +78,7 @@ public class MainAdminForm extends javax.swing.JFrame {
             }   
         });
     }
-    
-    
-    
-    
 
-    
-    
-    
     private void setForm(JComponent com){
         MainPanel.removeAll();
         MainPanel.add(com);
