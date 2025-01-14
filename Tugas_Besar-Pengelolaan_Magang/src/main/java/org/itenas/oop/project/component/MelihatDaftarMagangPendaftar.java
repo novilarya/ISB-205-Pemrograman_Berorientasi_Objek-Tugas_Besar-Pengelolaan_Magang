@@ -36,7 +36,7 @@ public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
     private ControllerMagang conMagang = new ControllerMagang();
     private DefaultTableModel model;
     private ConnectionManager conMan;
-    private Connection conn;
+    private Connection con;
     
     public final void getData(String searchKeyword) {
     jPanel3.removeAll();
@@ -72,7 +72,7 @@ private boolean matchesSearch(Magang magang, String keyword) {
            magang.getDeskripsiMagang().toLowerCase().contains(keyword) ||
            magang.getKualifikasiMagang().toLowerCase().contains(keyword);
 }
-       private void tampilkanDataMagang(String judulMagang){
+       /*private void tampilkanDataMagang(String judulMagang){
         Magang magang = new Magang();
         magang = conMagang.mencariBerdasarkanJudul(judulMagang);
         
@@ -93,7 +93,7 @@ private boolean matchesSearch(Magang magang, String keyword) {
         }else{
             JOptionPane.showMessageDialog(null,"Data dengan judul " + judulMagang + " tidak ditemukan!");
         }
-    }
+    }*/
        
    private JPanel createInternshipPanel(Magang magang) {
     RoundedPanel panel = new RoundedPanel(30); // Sudut melingkar dengan radius 30
@@ -213,7 +213,12 @@ private boolean matchesSearch(Magang magang, String keyword) {
         configureTextArea(jTextArea4);
         
         // Load initial data
-        getData(String searchKeyword);          
+        txtSearching.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                String searchKeyword = txtSearching.getText();
+                getData(searchKeyword);
+            }
+        });         
     }
 
     /**
@@ -230,8 +235,6 @@ private boolean matchesSearch(Magang magang, String keyword) {
         jPanel4 = new org.itenas.oop.project.component.CardMagang();
         Detail = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        Search = new javax.swing.JButton();
-        Searching = new javax.swing.JTextField();
         cardMagang1 = new org.itenas.oop.project.component.CardMagang();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -246,6 +249,8 @@ private boolean matchesSearch(Magang magang, String keyword) {
         jTextArea3 = new javax.swing.JTextArea();
         jTextArea4 = new javax.swing.JTextArea();
         jButtonDaftar = new javax.swing.JButton();
+        txtSearching = new javax.swing.JTextField();
+        Search = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(239, 236, 229));
 
@@ -287,37 +292,21 @@ private boolean matchesSearch(Magang magang, String keyword) {
                 .addContainerGap())
         );
 
-        Search.setText("Search");
-        Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(Searching)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Search)))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Search)
-                    .addComponent(Searching, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(660, Short.MAX_VALUE))
+                .addContainerGap(708, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel3);
@@ -415,23 +404,43 @@ private boolean matchesSearch(Magang magang, String keyword) {
                 .addContainerGap())
         );
 
+        Search.setText("Search");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtSearching)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Search)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cardMagang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cardMagang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Search)
+                            .addComponent(txtSearching, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cardMagang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -454,7 +463,7 @@ private boolean matchesSearch(Magang magang, String keyword) {
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         // TODO add your handling code here:
           try {
-        String searchKeyword = Searching.getText(); // Gunakan jTextField1 yang sudah ada
+        String searchKeyword = txtSearching.getText(); // Gunakan jTextField1 yang sudah ada
         getData(searchKeyword);
     } catch(Exception ex) {
         JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat mencari data: " + ex.getMessage());
@@ -508,7 +517,6 @@ private boolean matchesSearch(Magang magang, String keyword) {
     private javax.swing.JLabel KualifikasiMagang;
     private javax.swing.JLabel LokasiMagang;
     private javax.swing.JButton Search;
-    private javax.swing.JTextField Searching;
     private org.itenas.oop.project.component.CardMagang cardMagang1;
     private javax.swing.JButton jButtonDaftar;
     private javax.swing.JLabel jLabel1;
@@ -523,5 +531,6 @@ private boolean matchesSearch(Magang magang, String keyword) {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextField txtSearching;
     // End of variables declaration//GEN-END:variables
 }
