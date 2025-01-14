@@ -41,13 +41,13 @@ public class MenuAdmin extends javax.swing.JPanel {
     
     
     private void init(){
-        listMenuAdmin1.addItem(new ModelMenu("Dashboard", ModelMenu.MenuType.MENU));
-        listMenuAdmin1.addItem(new ModelMenu("Tambah Admin", ModelMenu.MenuType.MENU));
-        listMenuAdmin1.addItem(new ModelMenu("Daftar Admin", ModelMenu.MenuType.MENU));
-        listMenuAdmin1.addItem(new ModelMenu("Daftar Magang", ModelMenu.MenuType.MENU));
-        listMenuAdmin1.addItem(new ModelMenu("Daftar Pendaftar", ModelMenu.MenuType.MENU));
-        listMenuAdmin1.addItem(new ModelMenu("Daftar Penyelenggara", ModelMenu.MenuType.MENU));
-        listMenuAdmin1.addItem(new ModelMenu("Logout", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("Dashboard", "Dashboard", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("Regist", "Tambah Admin", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("List", "Daftar Admin", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("List", "Daftar Magang", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("List", "Daftar Pendaftar", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("List", "Daftar Penyelenggara", ModelMenu.MenuType.MENU));
+        listMenuAdmin1.addItem(new ModelMenu("Logout", "Logout", ModelMenu.MenuType.MENU));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,37 +59,37 @@ public class MenuAdmin extends javax.swing.JPanel {
     private void initComponents() {
 
         panelMoving = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         listMenuAdmin1 = new org.itenas.oop.project.repository.ListMenuPenyelenggara<>();
 
         panelMoving.setOpaque(false);
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Admin");
+        jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itenas/oop/project/icon/Simagang.png"))); // NOI18N
 
         javax.swing.GroupLayout panelMovingLayout = new javax.swing.GroupLayout(panelMoving);
         panelMoving.setLayout(panelMovingLayout);
         panelMovingLayout.setHorizontalGroup(
             panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMovingLayout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(67, 67, 67))
+            .addGroup(panelMovingLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelMovingLayout.setVerticalGroup(
             panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMovingLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listMenuAdmin1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+            .addComponent(listMenuAdmin1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -99,13 +99,13 @@ public class MenuAdmin extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 73, Short.MAX_VALUE)
+                .addGap(0, 93, Short.MAX_VALUE)
                 .addComponent(listMenuAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(panelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(661, Short.MAX_VALUE)))
+                    .addContainerGap(669, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
     @Override
@@ -140,7 +140,7 @@ public class MenuAdmin extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private org.itenas.oop.project.repository.ListMenuPenyelenggara<String> listMenuAdmin1;
     private javax.swing.JPanel panelMoving;
     // End of variables declaration//GEN-END:variables

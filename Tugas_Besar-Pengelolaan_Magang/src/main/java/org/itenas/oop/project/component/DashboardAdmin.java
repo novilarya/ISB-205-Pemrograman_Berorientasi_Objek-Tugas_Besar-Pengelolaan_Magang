@@ -40,13 +40,13 @@ public class DashboardAdmin extends javax.swing.JPanel {
                 txtSumAdmin.setText(String.valueOf(rs.getInt("jumlah")));
             }
            
-            String queryPendaftar = "SELECT COUNT(*) AS jumlah FROM daftar_pendaftar_magang";
+            String queryPendaftar = "SELECT COUNT(*) AS jumlah FROM daftar_akun WHERE jenis_akun = 'Pendaftar'";
             rs = stmt.executeQuery(queryPendaftar);
             if (rs.next()) {
                 txtSumPendaftar.setText(String.valueOf(rs.getInt("jumlah")));
             }
 
-            String queryPenyelenggara = "SELECT COUNT(*) AS jumlah FROM daftarpenyelenggara";
+            String queryPenyelenggara = "SELECT COUNT(*) AS jumlah FROM daftar_akun WHERE jenis_akun = 'Penyelenggara'";
             rs = stmt.executeQuery(queryPenyelenggara);
             if (rs.next()) {
                 txtSumPenyelenggara.setText(String.valueOf(rs.getInt("jumlah")));
@@ -116,7 +116,7 @@ public class DashboardAdmin extends javax.swing.JPanel {
         cardMagang1Layout.setHorizontalGroup(
             cardMagang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cardMagang1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(cardMagang1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDaftarAdmin)
                     .addComponent(txtSumAdmin))
@@ -150,7 +150,7 @@ public class DashboardAdmin extends javax.swing.JPanel {
         cardMagang2Layout.setHorizontalGroup(
             cardMagang2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cardMagang2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(cardMagang2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDaftarPenyelenggara)
                     .addComponent(txtSumPenyelenggara))
@@ -179,7 +179,7 @@ public class DashboardAdmin extends javax.swing.JPanel {
         cardMagang3Layout.setHorizontalGroup(
             cardMagang3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cardMagang3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(cardMagang3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDaftarPendaftar)
                     .addComponent(txtSumPendaftar))
@@ -213,11 +213,11 @@ public class DashboardAdmin extends javax.swing.JPanel {
         cardMagang4Layout.setHorizontalGroup(
             cardMagang4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cardMagang4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(cardMagang4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDaftarMagang)
                     .addComponent(txtSumMagang))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         cardMagang4Layout.setVerticalGroup(
             cardMagang4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

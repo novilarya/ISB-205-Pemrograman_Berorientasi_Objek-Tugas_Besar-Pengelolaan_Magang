@@ -15,7 +15,6 @@ public class LoginUtama extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-        
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
     public void keyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
@@ -86,6 +85,7 @@ public class LoginUtama extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         textRegisterPenyelenggara9 = new javax.swing.JLabel();
         textBelumPunyaAkun9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         labelImageBackgound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -154,15 +154,15 @@ public class LoginUtama extends javax.swing.JFrame {
         textBelumPunyaAkun9.setForeground(new java.awt.Color(51, 51, 51));
         textBelumPunyaAkun9.setText("Belum punya akun?");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itenas/oop/project/icon/Simaganglr.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(textSelamatDatang9))
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -176,13 +176,20 @@ public class LoginUtama extends javax.swing.JFrame {
                         .addGap(84, 84, 84)
                         .addComponent(textBelumPunyaAkun9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textRegisterPenyelenggara9)))
+                        .addComponent(textRegisterPenyelenggara9))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textSelamatDatang9))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addGap(100, 100, 100)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textSelamatDatang9)
                 .addGap(37, 37, 37)
                 .addComponent(textUsername9)
@@ -200,18 +207,10 @@ public class LoginUtama extends javax.swing.JFrame {
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textRegisterPenyelenggara9)
                     .addComponent(textBelumPunyaAkun9))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
-<<<<<<< HEAD
-        labelImageBackgound.setIcon(new javax.swing.ImageIcon("C:\\Novila Arya\\Sekolah\\ITENAS\\Semester 3\\ISB-205\\Program\\Tugas Besar\\logregicon350.png")); // NOI18N
-=======
-<<<<<<< HEAD
-        labelImageBackgound.setIcon(new javax.swing.ImageIcon("D:\\Semester 3\\TUBES\\ISB-205-Pemrograman_Berorientasi_Objek-Tugas_Besar-Pengelolaan_Magang\\Tugas_Besar-Pengelolaan_Magang\\src\\main\\java\\org\\itenas\\oop\\project\\icon\\loginRegisIcon.png")); // NOI18N
-=======
-        labelImageBackgound.setIcon(new javax.swing.ImageIcon("C:\\Novila Arya\\Sekolah\\ITENAS\\Semester 3\\ISB-205\\Program\\Tugas Besar\\logregicon350.png")); // NOI18N
->>>>>>> 645bc8cb97eb100ddb7d4dbf8ce044fa0678a38f
->>>>>>> 944383ea883770aace8b90080583d0bd80a6becb
+        labelImageBackgound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itenas/oop/project/icon/loginRegisIcon.png"))); // NOI18N
         labelImageBackgound.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
@@ -295,6 +294,7 @@ public class LoginUtama extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LoginUtama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -307,6 +307,7 @@ public class LoginUtama extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JCheckBox cbShowPassword;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JLabel labelImageBackgound;
