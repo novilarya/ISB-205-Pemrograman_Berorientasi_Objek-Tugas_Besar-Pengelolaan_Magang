@@ -23,8 +23,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.itenas.oop.project.repository.RoundedPanel;
 
 /**
@@ -32,12 +30,12 @@ import org.itenas.oop.project.repository.RoundedPanel;
  * @author aryan
  */
 public class MelihatDaftarMagangPendaftar extends javax.swing.JPanel {
-     private Boolean hasil;
+    private Boolean hasil;
     private ControllerMagang conMagang = new ControllerMagang();
     private DefaultTableModel model;
     private ConnectionManager conMan;
     private Connection con;
-    
+
     public final void getData(String searchKeyword) {
     jPanel3.removeAll();
     jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
@@ -72,7 +70,8 @@ private boolean matchesSearch(Magang magang, String keyword) {
            magang.getDeskripsiMagang().toLowerCase().contains(keyword) ||
            magang.getKualifikasiMagang().toLowerCase().contains(keyword);
 }
-       /*private void tampilkanDataMagang(String judulMagang){
+    
+    /*private void tampilkanDataMagang(String judulMagang){
         Magang magang = new Magang();
         magang = conMagang.mencariBerdasarkanJudul(judulMagang);
         
@@ -91,10 +90,10 @@ private boolean matchesSearch(Magang magang, String keyword) {
             data[6] = magang.getKualifikasiMagang();
             dtm.addRow(data);
         }else{
-            JOptionPane.showMessageDialog(null,"Data dengan judul " + judulMagang + " tidak ditemukan!");
+            JOptionPane.showMessageDialog(null,"Barang dengan judul " + judulMagang + " tidak ditemukan!");
         }
     }*/
-       
+    
    private JPanel createInternshipPanel(Magang magang) {
     RoundedPanel panel = new RoundedPanel(30); // Sudut melingkar dengan radius 30
     panel.setLayout(new BorderLayout(10, 10));
@@ -202,25 +201,25 @@ private boolean matchesSearch(Magang magang, String keyword) {
     
     public MelihatDaftarMagangPendaftar() {
         initComponents();
-        
-        // Configure scroll pane
-       jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        
-        // Initialize text areas
-        configureTextArea(jTextArea1);
-        configureTextArea(jTextArea2);
-        configureTextArea(jTextArea3);
-        configureTextArea(jTextArea4);
-        
-        // Load initial data
-        txtSearching.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                String searchKeyword = txtSearching.getText();
-                getData(searchKeyword);
-            }
-        });         
-    }
-
+         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+    
+    // Initialize text areas
+    configureTextArea(jTextArea1);
+    configureTextArea(jTextArea2);
+    configureTextArea(jTextArea3);
+    configureTextArea(jTextArea4);
+    
+    // Load initial data tanpa keyword search
+    getData(null);
+    
+    // Tambahkan listener untuk search field
+    jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyReleased(java.awt.event.KeyEvent evt) {
+            String searchKeyword = jTextField1.getText();
+            getData(searchKeyword);
+        }
+    });
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,7 +248,7 @@ private boolean matchesSearch(Magang magang, String keyword) {
         jTextArea3 = new javax.swing.JTextArea();
         jTextArea4 = new javax.swing.JTextArea();
         jButtonDaftar = new javax.swing.JButton();
-        txtSearching = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         Search = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(239, 236, 229));
@@ -274,7 +273,7 @@ private boolean matchesSearch(Magang magang, String keyword) {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Detail)
                 .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -399,10 +398,16 @@ private boolean matchesSearch(Magang magang, String keyword) {
                 .addComponent(KualifikasiMagang)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonDaftar)
                 .addContainerGap())
         );
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         Search.setText("Search");
         Search.addActionListener(new java.awt.event.ActionListener() {
@@ -420,9 +425,9 @@ private boolean matchesSearch(Magang magang, String keyword) {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(txtSearching)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Search)))
+                        .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cardMagang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -434,8 +439,8 @@ private boolean matchesSearch(Magang magang, String keyword) {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Search)
-                            .addComponent(txtSearching, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Search))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -448,27 +453,33 @@ private boolean matchesSearch(Magang magang, String keyword) {
         // TODO add your handling code here:
     }//GEN-LAST:event_DetailActionPerformed
 
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        // TODO add your handling code here:
+         try {
+        String searchKeyword = jTextField1.getText(); // Gunakan jTextField1 yang sudah ada
+        getData(searchKeyword);
+    } catch(Exception ex) {
+        JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat mencari data: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_SearchActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     private void jButtonDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDaftarActionPerformed
-        String judul = jLabel1.getText();       
+        String judul = jLabel1.getText();
         try {
+            conMan = new ConnectionManager();
+            con = conMan.connectDb();
             Statement stm = con.createStatement();
             String query = "UPDATE temp_daftar_akun SET judul = '" + judul + "' LIMIT 1;";
             stm.executeUpdate(query);
             new PendaftaranFrame().setVisible(true);
         } catch (SQLException ex) {
             //Logger.getLogger(SeleksiPendaftarForm.class.getName()).log(Level.SEVERE, null, ex);
-        }              
+        }
     }//GEN-LAST:event_jButtonDaftarActionPerformed
-
-    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
-        // TODO add your handling code here:
-          try {
-        String searchKeyword = txtSearching.getText(); // Gunakan jTextField1 yang sudah ada
-        getData(searchKeyword);
-    } catch(Exception ex) {
-        JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat mencari data: " + ex.getMessage());
-    }
-    }//GEN-LAST:event_SearchActionPerformed
     public class InternshipListItem extends javax.swing.JPanel {
     private Magang magang;
     private MelihatDaftarMagangPendaftar parent;
@@ -531,6 +542,6 @@ private boolean matchesSearch(Magang magang, String keyword) {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextField txtSearching;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

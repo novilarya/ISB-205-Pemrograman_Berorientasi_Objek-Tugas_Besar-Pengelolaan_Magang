@@ -15,13 +15,17 @@ import org.itenas.oop.project.model.ModelMenu;
 public class MenuItem extends javax.swing.JPanel {
 
     private boolean selected;
+    private boolean over;    
     
     public MenuItem(ModelMenu data) {
         initComponents();
         setOpaque(false);
         if (data.getType() == ModelMenu.MenuType.MENU){
+            lbIcon.setIcon(data.toIcon());
             lbName.setText(data.getName());
         }else if (data.getType() == ModelMenu.MenuType.TITLE){
+            lbIcon.setText(data.getName());
+            lbIcon.setFont(new Font("sansserif", 1, 12));
             lbName.setVisible(false);
         }else{
             lbName.setText(" ");
@@ -32,7 +36,11 @@ public class MenuItem extends javax.swing.JPanel {
         this.selected = selected;
         repaint();
     }
-
+    
+    public void setOver(boolean over) {
+        this.over = over;
+        repaint();
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,23 +52,29 @@ public class MenuItem extends javax.swing.JPanel {
     private void initComponents() {
 
         lbName = new javax.swing.JLabel();
+        lbIcon = new javax.swing.JLabel();
 
         lbName.setBackground(new java.awt.Color(255, 255, 255));
         lbName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbName.setText("Kelola Magang");
+
+        lbIcon.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(16, 16, 16)
+                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -79,6 +93,7 @@ public class MenuItem extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lbIcon;
     private javax.swing.JLabel lbName;
     // End of variables declaration//GEN-END:variables
 }
