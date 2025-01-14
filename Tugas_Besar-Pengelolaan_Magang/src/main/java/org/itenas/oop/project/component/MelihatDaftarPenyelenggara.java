@@ -37,7 +37,6 @@ public class MelihatDaftarPenyelenggara extends javax.swing.JPanel {
         ConnectionManager conMan = new ConnectionManager();
         Connection conn = conMan.connectDb();
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("ID Penyelenggara");
         model.addColumn("Nama");
         model.addColumn("Instansi");
         model.addColumn("Username");
@@ -45,12 +44,11 @@ public class MelihatDaftarPenyelenggara extends javax.swing.JPanel {
 
         try {
             Statement stmt = conn.createStatement();
-            String query = "SELECT id_penyelenggara, nama, instansi, username FROM daftarpenyelenggara";
+            String query = "SELECT nama, instansi, username FROM daftar_akun WHERE jenis_akun = 'Penyelenggara'";
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
                 model.addRow(new Object[]{
-                    rs.getInt("id_penyelenggara"),
                     rs.getString("nama"), 
                     rs.getString("instansi"),
                     rs.getString("username"),
@@ -67,7 +65,6 @@ public class MelihatDaftarPenyelenggara extends javax.swing.JPanel {
         ConnectionManager conMan = new ConnectionManager();
         Connection conn = conMan.connectDb();
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("ID Penyelenggara");
         model.addColumn("Nama");
         model.addColumn("Instansi");
         model.addColumn("Username");
@@ -75,13 +72,12 @@ public class MelihatDaftarPenyelenggara extends javax.swing.JPanel {
 
         try {
             Statement stmt = conn.createStatement();
-            String query = "SELECT id_penyelenggara, nama, instansi, username FROM daftarpenyelenggara WHERE nama LIKE '%" + namaPenyelenggara + "%'";
+            String query = "SELECT nama, instansi, username FROM daftar_akun WHERE jenis_akun = 'Penyelenggara' AND nama LIKE '%" + namaPenyelenggara + "%'";
             ResultSet rs = stmt.executeQuery(query);
             boolean hasil = false;
 
             while (rs.next()) {
                 model.addRow(new Object[]{
-                    rs.getInt("id_penyelenggara"),
                     rs.getString("nama"), 
                     rs.getString("instansi"),
                     rs.getString("username"),
@@ -212,7 +208,7 @@ public class MelihatDaftarPenyelenggara extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(btnHapus, "Harap pilih data untuk dihapus!","Warning",JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String nama = tablePenyelenggara.getValueAt(pilihBaris, 1).toString();
+        String nama = tablePenyelenggara.getValueAt(pilihBaris, 0).toString();
 
         int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(this,"Apakah Anda yakin ingin menghapus penyelenggara dengan nama: " + nama + "?",
             "Konfirmasi Hapus", javax.swing.JOptionPane.YES_NO_OPTION);
@@ -222,7 +218,7 @@ public class MelihatDaftarPenyelenggara extends javax.swing.JPanel {
             Connection conn = conMan.connectDb();
             try {
                 Statement stmt = conn.createStatement();
-                String query = "DELETE FROM daftarpenyelenggara WHERE nama = '" + nama + "'";
+                String query = "DELETE FROM daftar_akun WHERE nama = '" + nama + "'";
                 int barisHapus = stmt.executeUpdate(query);
 
                 if (barisHapus > 0) {

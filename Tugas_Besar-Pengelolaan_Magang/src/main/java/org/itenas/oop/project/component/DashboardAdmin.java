@@ -40,13 +40,13 @@ public class DashboardAdmin extends javax.swing.JPanel {
                 txtSumAdmin.setText(String.valueOf(rs.getInt("jumlah")));
             }
            
-            String queryPendaftar = "SELECT COUNT(*) AS jumlah FROM daftar_pendaftar_magang";
+            String queryPendaftar = "SELECT COUNT(*) AS jumlah FROM daftar_akun WHERE jenis_akun = 'Pendaftar'";
             rs = stmt.executeQuery(queryPendaftar);
             if (rs.next()) {
                 txtSumPendaftar.setText(String.valueOf(rs.getInt("jumlah")));
             }
 
-            String queryPenyelenggara = "SELECT COUNT(*) AS jumlah FROM daftarpenyelenggara";
+            String queryPenyelenggara = "SELECT COUNT(*) AS jumlah FROM daftar_akun WHERE jenis_akun = 'Penyelenggara'";
             rs = stmt.executeQuery(queryPenyelenggara);
             if (rs.next()) {
                 txtSumPenyelenggara.setText(String.valueOf(rs.getInt("jumlah")));
